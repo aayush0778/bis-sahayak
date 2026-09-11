@@ -3,8 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "description": "BIS Sahayak — AI-powered Intelligent Assistant for Indian Standards and BIS Services (SIH26107)",
+  "workspaces": [
+    "node-api",
+    "frontend"
+  ],
   "scripts": {
-    "setup": "npm --prefix node-api install && npm --prefix frontend install && python -m pip install -r ai-service/requirements.txt && npm install",
+    "setup": "npm install && python -m pip install -r ai-service/requirements.txt",
+    "build:frontend": "npm --prefix frontend run build",
     "db:init": "python ingestion/init_db.py",
     "db:seed": "python ingestion/seed_standards.py && python ingestion/seed_qco.py && python ingestion/seed_verification.py",
     "db:embed": "python ingestion/embed_corpus.py",

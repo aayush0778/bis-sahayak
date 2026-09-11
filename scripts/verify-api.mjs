@@ -32,10 +32,17 @@ async function main() {
   console.log("== BIS Sahayak end-to-end verification ==\n");
 
   console.log("[1] Health");
-  const aiHealth = await j(`${AI}/health`);
-  check("AI service /health ok", aiHealth.status === 200 && aiHealth.body?.ok !== false, JSON.stringify(aiHealth.body));
-  const apiHealth = await j(`${API.replace("/api/v1", "")}/health`);
+  // The AI service is internal on Vercel (service binding only); its reachability
+  // is proven by the Node API health check below, unless a direct URL is provided.
+  if (process.env.AI_HEALTH_URL) {
+    const aiHealth = await j(`${process.env.AI_HEALTH_URL}/health`);
+    check("AI service /health ok", aiHealth.status === 200 && aiHealth.body?.ok !== false, JSON.stringify(aiHealth.body));
+  } else {
+    console.log("  SKIP  direct AI /health (internal service — checked via Node API)");
+  }
+  const apiHealth = await j(`${API}/health`);
   check("Node API /health ok", apiHealth.status === 200, JSON.stringify(apiHealth.body));
+  check("Node API reaches DB and AI service", apiHealth.body?.db === "up" && apiHealth.body?.ai === "up");
 
   console.log("\n[2] Auth");
   const email = `verify-${Date.now()}@example.com`;

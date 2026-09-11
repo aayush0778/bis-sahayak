@@ -1,9 +1,6 @@
-import { createApp } from "./app";
+import app from "./app";
 import { config } from "./config";
-import { pool } from "./db";
-import { ai, AiServiceError } from "./aiClient";
-
-const app = createApp({ db: pool, ai });
+import { AiServiceError } from "./aiClient";
 
 app.listen(config.port, () => {
   console.log(`[bis-sahayak] node-api listening on http://localhost:${config.port}`);

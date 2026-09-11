@@ -10,6 +10,10 @@ export const config = {
   port: envInt("PORT", 4000),
   databaseUrl: process.env.DATABASE_URL ?? "postgresql://bis:bis@localhost:5432/bis",
   jwtSecret: process.env.JWT_SECRET ?? "dev-only-secret-change-me",
-  aiServiceUrl: process.env.AI_SERVICE_URL ?? "http://localhost:8000",
+  // On Vercel the AI service is a sibling serverless function reached over
+  // same-origin HTTPS via VERCEL_URL; locally/Docker it is a loopback service.
+  aiServiceUrl:
+    process.env.AI_SERVICE_URL ??
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}/api/ai` : "http://localhost:8000"),
   aiTimeoutMs: envInt("AI_TIMEOUT_MS", 45000),
 };

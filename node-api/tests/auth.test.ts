@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import request from "supertest";
 import bcrypt from "bcryptjs";
-import { createApp } from "../src/app";
+import { createApp } from "../src/createApp";
 import { fakeDb } from "./helpers";
 
 let app: ReturnType<typeof createApp>;

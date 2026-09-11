@@ -1,0 +1,29 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "web": {
+      "root": "frontend/",
+      "framework": "vite",
+      "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+    },
+    "api": {
+      "root": "node-api/",
+      "framework": "express",
+      "buildCommand": "npm run build",
+      "outputDirectory": "dist",
+      "bindings": [
+        { "type": "service", "service": "ai", "format": "url", "env": "AI_SERVICE_URL" }
+      ]
+    },
+    "ai": {
+      "root": "ai-service/",
+      "framework": "fastapi",
+      "entrypoint": "app.main:app"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/v1/(.*)", "destination": { "service": "api" } },
+    { "source": "/api/ai/(.*)", "destination": { "service": "ai" } },
+    { "source": "/(.*)", "destination": { "service": "web" } }
+  ]
+}

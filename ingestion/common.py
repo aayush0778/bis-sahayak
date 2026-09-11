@@ -7,7 +7,6 @@ import psycopg
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
-SQL_SCHEMA = BASE_DIR.parent / "db" / "init.sql"
 
 DEFAULT_DATABASE_URL = "postgresql://bis:bis@localhost:5432/bis"
 STANDARDS_CATALOGUE_URL = (
@@ -28,10 +27,18 @@ def load_json(name: str):
         return json.load(f)
 
 
+def sql_schema_paths():
+    """Schema candidates: repo layout (../db/init.sql) and bootstrap image layout (./db-init.sql)."""
+    return [BASE_DIR.parent / "db" / "init.sql", BASE_DIR / "db-init.sql"]
+
+
 def run_schema() -> None:
-    with connect() as conn, conn.cursor() as cur, open(SQL_SCHEMA, "r", encoding="utf-8") as f:
+    schema = next((p for p in sql_schema_paths() if p.exists()), None)
+    if schema is None:
+        raise FileNotFoundError(f"init.sql not found in any of {[str(p) for p in sql_schema_paths()]}")
+    with connect() as conn, conn.cursor() as cur, open(schema, "r", encoding="utf-8") as f:
         cur.execute(f.read())
-    print(f"[init_db] schema applied from {SQL_SCHEMA}")
+    print(f"[init_db] schema applied from {schema}")
 
 
 def as_text_list(value):
