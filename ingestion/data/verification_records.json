@@ -1,0 +1,28 @@
+[
+  {"record_type": "CM/L", "record_number": "CM/L-8200123456", "holder_name": "Suvidha Appliances Pvt. Ltd.", "product_scope": "Domestic pressure cookers as per IS 2347:2017", "status": "active", "valid_until": "2027-05-31"},
+  {"record_type": "CM/L", "record_number": "CM/L-8200234567", "holder_name": "Suvidha Appliances Pvt. Ltd.", "product_scope": "Electric kettles and immersion water heaters as per IS 302 (Part 2/Sec 15)", "status": "active", "valid_until": "2027-08-14"},
+  {"record_type": "CM/L", "record_number": "CM/L-8200345678", "holder_name": "Bharat Cements Ltd.", "product_scope": "Ordinary Portland Cement 43 grade as per IS 8112:2013", "status": "active", "valid_until": "2026-12-01"},
+  {"record_type": "CM/L", "record_number": "CM/L-8200456789", "holder_name": "AeroSpin Fans India", "product_scope": "Ceiling fans and regulators as per IS 374:2019", "status": "active", "valid_until": "2028-02-20"},
+  {"record_type": "CM/L", "record_number": "CM/L-8200567890", "holder_name": "SafeRide Helmets LLP", "product_scope": "Protective helmets for two wheeler riders as per IS 4151:2015", "status": "suspended", "valid_until": "2026-11-30"},
+  {"record_type": "CM/L", "record_number": "CM/L-8200678901", "holder_name": "Kisan Agro Pipes", "product_scope": "uPVC pipes for potable water as per IS 4985", "status": "expired", "valid_until": "2025-03-31"},
+  {"record_type": "CM/L", "record_number": "CM/L-8200789012", "holder_name": "Joyful Kids Toymakers", "product_scope": "Non-electric toys as per IS 9873 (Part 1):2019", "status": "active", "valid_until": "2027-01-15"},
+  {"record_type": "CM/L", "record_number": "CM/L-8200890123", "holder_name": "AluWare Industries", "product_scope": "Wrought aluminium utensils as per IS 1660:2024", "status": "active", "valid_until": "2027-06-30"},
+
+  {"record_type": "HUID", "record_number": "AN0267", "holder_name": "Shree Ganesh Jewellers, Mumbai", "product_scope": "Gold jewellery — 22K hallmark", "status": "active", "valid_until": null},
+  {"record_type": "HUID", "record_number": "MU4512", "holder_name": "Tanvi Gold House, Pune", "product_scope": "Gold jewellery — 18K hallmark", "status": "active", "valid_until": null},
+  {"record_type": "HUID", "record_number": "JP8831", "holder_name": "Rajwada Jewellers, Jaipur", "product_scope": "Gold jewellery — 22K hallmark", "status": "active", "valid_until": null},
+  {"record_type": "HUID", "record_number": "DL1122", "holder_name": "Chandni Chowk Gold Mart, Delhi", "product_scope": "Gold jewellery — 24K hallmark", "status": "active", "valid_until": null},
+  {"record_type": "HUID", "record_number": "CH5509", "holder_name": "Sector 17 Gold Palace, Chandigarh", "product_scope": "Gold jewellery — 22K hallmark", "status": "suspended", "valid_until": null},
+  {"record_type": "HUID", "record_number": "KL7743", "holder_name": "Marine Drive Bullion, Kochi", "product_scope": "Gold jewellery — 18K hallmark", "status": "active", "valid_until": null},
+  {"record_type": "HUID", "record_number": "HY3388", "holder_name": "Laal Bazaar Jewellers, Hyderabad", "product_scope": "Gold jewellery — 22K hallmark", "status": "cancelled", "valid_until": null},
+  {"record_type": "HUID", "record_number": "AH9021", "holder_name": "Manek Chowk Gold, Ahmedabad", "product_scope": "Gold jewellery — 22K hallmark", "status": "active", "valid_until": null},
+
+  {"record_type": "CRS", "record_number": "R-61001234", "holder_name": "VoltEdge Electronics Pvt. Ltd.", "product_scope": "Mobile phone power adapters as per IS 13252 (Part 1):2010", "status": "active", "valid_until": null},
+  {"record_type": "CRS", "record_number": "R-61002234", "holder_name": "NovaTech Devices India", "product_scope": "Power banks as per IS 13252 (Part 1):2010", "status": "active", "valid_until": null},
+  {"record_type": "CRS", "record_number": "R-61003234", "holder_name": "ClearView Displays Ltd.", "product_scope": "LED televisions as per IS 616:2017", "status": "active", "valid_until": null},
+  {"record_type": "CRS", "record_number": "R-61004234", "holder_name": "SunVolt Energy Systems", "product_scope": "Crystalline silicon PV modules as per IS/IEC 61215", "status": "active", "valid_until": null},
+  {"record_type": "CRS", "record_number": "R-61005234", "holder_name": "LumaGlow Lighting", "product_scope": "Self-ballasted LED lamps as per IS 16102 (Part 1)", "status": "active", "valid_until": null},
+  {"record_type": "CRS", "record_number": "R-61006234", "holder_name": "CellCore Batteries", "product_scope": "Lithium-ion portable battery cells as per IS 16046 (Part 2):2018", "status": "cancelled", "valid_until": null},
+  {"record_type": "CRS", "record_number": "R-61007234", "holder_name": "PixelForge Labs", "product_scope": "Tablet computers as per IS 13252 (Part 1):2010", "status": "active", "valid_until": null},
+  {"record_type": "CRS", "record_number": "R-61008234", "holder_name": "SoundCore Audio India", "product_scope": "Sound bars as per IS 616:2017", "status": "expired", "valid_until": "2026-04-30"}
+]
