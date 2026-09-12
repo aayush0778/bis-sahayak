@@ -1,0 +1,459 @@
+[
+ {
+  "office_type": "hq",
+  "name": "BIS Headquarters (Manak Bhawan)",
+  "address": "Manak Bhawan, 9 Bahadur Shah Zafar Marg, New Delhi 110002",
+  "phone": "011-23230131",
+  "toll_free": "1800 11 1206",
+  "email": null,
+  "source_url": "https://www.bis.gov.in/directory/head-quarter",
+  "city": "New Delhi"
+ },
+ {
+  "office_type": "regional_office",
+  "name": "Central Regional Office",
+  "address": "601/A, Konnectus Tower-1, 6th Floor, DMRC Building, Bhavbhuti Marg, New Delhi 110002",
+  "phone": "011-23237401",
+  "email": "ddgc@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/directory/regional-offices",
+  "city": "New Delhi"
+ },
+ {
+  "office_type": "regional_office",
+  "name": "Northern Regional Office",
+  "address": "Plot No. 4-A, Sector 27-B, Madhya Marg, Chandigarh 160019",
+  "phone": "0172-2650206",
+  "email": "nro@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/directory/regional-offices",
+  "city": "Chandigarh"
+ },
+ {
+  "office_type": "regional_office",
+  "name": "Eastern Regional Office",
+  "address": "V.I.P. Road, Kankurgachi, Kolkata 700054",
+  "phone": "033-23208662",
+  "email": null,
+  "source_url": "https://www.bis.gov.in/directory/regional-offices",
+  "city": "Kolkata"
+ },
+ {
+  "office_type": "regional_office",
+  "name": "Southern Regional Office",
+  "address": "C.I.T. Campus, IV Cross Road, Chennai 600113",
+  "phone": "044-22541442",
+  "email": null,
+  "source_url": "https://www.bis.gov.in/directory/regional-offices",
+  "city": "Chennai"
+ },
+ {
+  "office_type": "regional_office",
+  "name": "Western Regional Office",
+  "address": "Manakalaya, E-9, M.I.D.C., Behind Marol Telephone Exchange, Andheri (East), Mumbai 400093",
+  "phone": "022-28327856",
+  "email": "wro@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/directory/regional-offices",
+  "city": "Mumbai"
+ },
+ {
+  "office_type": "laboratory",
+  "name": "Central Laboratory (CL), Sahibabad",
+  "address": "Plot No. 20/9, Site IV, Sahibabad Industrial Area, Sahibabad 201010",
+  "phone": "0120-4177101",
+  "email": "headcl@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/laboratorys/testing-overview/laboratory-contact-us",
+  "city": "Sahibabad, Ghaziabad"
+ },
+ {
+  "office_type": "laboratory",
+  "name": "Eastern Regional Laboratory (ERL), Kolkata",
+  "address": "P-230, C.I.T. Scheme VII M, Block-W, Kankurgachi, Kolkata 700054",
+  "phone": "033-23556587",
+  "email": "erol@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/laboratorys/testing-overview/laboratory-contact-us",
+  "city": "Kolkata"
+ },
+ {
+  "office_type": "laboratory",
+  "name": "Northern Regional Laboratory (NRL), Mohali",
+  "address": "B-69, Phase VII, SAS Nagar Industrial Focal Point, Mohali 160051",
+  "phone": "0172-4671027",
+  "email": "nrol@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/laboratorys/testing-overview/laboratory-contact-us",
+  "city": "Mohali"
+ },
+ {
+  "office_type": "laboratory",
+  "name": "Western Regional Laboratory (WRL), Mumbai",
+  "address": "Manakalaya, E-9, M.I.D.C., Andheri (East), Mumbai 400093",
+  "phone": "022-28327856",
+  "email": "wrol@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/laboratorys/testing-overview/laboratory-contact-us",
+  "city": "Mumbai"
+ },
+ {
+  "office_type": "laboratory",
+  "name": "Southern Regional Laboratory (SRL), Chennai",
+  "address": "C.I.T. Campus, IV Cross Road, Chennai 600113",
+  "phone": "044-22541208",
+  "email": "srol@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/laboratorys/testing-overview/laboratory-contact-us",
+  "city": "Chennai"
+ },
+ {
+  "office_type": "laboratory",
+  "name": "Bangalore Branch Laboratory",
+  "address": "Peenya Industrial Area, 1st Stage, Bengaluru-Tumkur Road, Bengaluru 560058",
+  "phone": "080-23721442",
+  "email": "bnbol@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/laboratorys/testing-overview/laboratory-contact-us",
+  "city": "Bengaluru"
+ },
+ {
+  "office_type": "laboratory",
+  "name": "Patna Branch Laboratory",
+  "address": "Pataliputra Industrial Estate, Patna 800013",
+  "phone": "0612-2262808",
+  "email": "pbol@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/laboratorys/testing-overview/laboratory-contact-us",
+  "city": "Patna"
+ },
+ {
+  "office_type": "laboratory",
+  "name": "Guwahati Branch Laboratory",
+  "address": "2nd Floor, West End Block, HOUSEFED Building, Beltola, Dispur, Guwahati 781006",
+  "phone": "0361-2525937",
+  "email": "gbol@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/laboratorys/testing-overview/laboratory-contact-us",
+  "city": "Guwahati"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Bhopal Branch Office (BPBO)",
+  "region": "central",
+  "address": "Commercial cum Office Complex, Manakalya, Opp. Dushera Maidan, E-5 Area Colony, Bittan Market, Bhopal 462016",
+  "phone": "0755-2423453",
+  "email": "hbpbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/central-region-office/bhopal-branch-office/",
+  "city": "Bhopal"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Delhi Branch Office I (DLBO-I)",
+  "region": "central",
+  "address": "601 A, 6th Floor, Konnectus Tower, Bhavbhuti Marg, Ajmeri Gate, New Delhi 110002",
+  "phone": "011-23237401, 011-23668161",
+  "email": "hdlbo1@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/central-region-office/delhi-branch-office-i/",
+  "city": "New Delhi"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Delhi Branch Office II (DLBO-II)",
+  "region": "central",
+  "address": "601/A, Konnectus Tower-1, 6th Floor, DMRC Building, Bhavbhuti Marg, New Delhi 110002",
+  "phone": "011-23232922",
+  "email": "dlbo2@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/central-region-office/delhi-branch-office-ii/",
+  "city": "New Delhi"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Ghaziabad Branch Office (GZBO)",
+  "region": "central",
+  "address": "Central Laboratory (Chemical Lab Block), Ground & 1st Floor, Plot No. 20/9, Site IV, Sahibabad Industrial Area, Sahibabad, Ghaziabad 201010",
+  "phone": "0120-2771092, 0120-2771094",
+  "email": "hgzbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/central-region-office/ghaziabad-branch-office/",
+  "city": "Sahibabad, Ghaziabad"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Jaipur Branch Office (JPBO)",
+  "region": "central",
+  "address": "Ground Floor, Bureau of Indian Standards, Prithvi Raj Road, Opp. Bharat Overseas Bank Limited, C-Scheme, Jaipur 302001",
+  "phone": "0141-2223282, 0141-2223286",
+  "email": "jpbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/central-region-office/jaipur-branch-office/",
+  "city": "Jaipur"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Lucknow Branch Office (LKBO)",
+  "region": "northern",
+  "address": "Regional Telecom Training Centre, BSNL Building, Sector-G, LDA Colony, Ashiana, Lucknow 226012 (U.P.)",
+  "phone": "0522-2728808, 0522-2306664",
+  "email": "hlkbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/northern-region-office/lucknow-branch-office/",
+  "city": "Lucknow"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Noida Branch Office (NOBO)",
+  "region": "central",
+  "address": "NITS Campus, A-20 & 21, Institutional Area, Sector-62, Noida 201309",
+  "phone": "0120-2979004, 0120-2979006",
+  "email": "nobo-bis@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/central-region-office/noida-branch-office/",
+  "city": "Noida"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Faridabad Branch Office",
+  "region": "central",
+  "address": "Faridabad, Haryana",
+  "phone": null,
+  "email": null,
+  "source_url": "https://www.bis.gov.in/branch-office/",
+  "city": "Faridabad"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Chandigarh Branch Office (CHBO)",
+  "region": "northern",
+  "address": "Northern Regional Office, Plot No. 4-A, Sector 27-B, Madhya Marg, Chandigarh 160019",
+  "phone": "0172-2997494, 0172-2650290",
+  "email": "chbo1@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/northern-region-office/chandigarh-branch-office/",
+  "city": "Chandigarh"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Haryana Branch Office (HRBO)",
+  "region": "northern",
+  "address": "Northern Regional Office, Plot No. 4-A, Madhya Marg, Sector 27-B, Chandigarh 160019",
+  "phone": "0172-2997493, 0172-2650290",
+  "email": "hhrbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/northern-region-office/haryana-branch-office/",
+  "city": "Chandigarh"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Dehradun Branch Office (DHBO)",
+  "region": "northern",
+  "address": "UCF Sadan, Ground Floor, Block D, Deep Nagar Road, Vishnu Vihar, Dehradun, Uttarakhand 248001",
+  "phone": "0135-7617777278",
+  "email": "hdhbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/northern-region-office/dehradun-branch-office/",
+  "city": "Dehradun"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Himachal Pradesh Branch Office (HPBO), Parwanoo",
+  "region": "northern",
+  "address": "Plot No. 4-A, Sector 27-B, Madhya Marg, Chandigarh 160019 (listed address per BIS directory)",
+  "phone": "01792-2650206",
+  "email": "nlbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/northern-region-office/himachal-pradesh-branch-office/",
+  "city": "Chandigarh"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Jammu & Kashmir Branch Office (JKBO)",
+  "region": "northern",
+  "address": "Lane No. 4, SIDCO Industrial Complex, Bari Brahmana, Jammu 181133 (J&K)",
+  "phone": "01923-295032, 01923-222696",
+  "email": "jkbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/northern-region-office/jammu-kashmir-branch-office/",
+  "city": "Jammu"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Bhubaneswar Branch Office (BHBO)",
+  "region": "eastern",
+  "address": "6th Floor, Gruha Nirman Bhawan (OSHB Building), Sachivalaya Marg, Bhubaneswar 751001",
+  "phone": "0674-2390847, 0674-2394193",
+  "email": "hbhbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/eastern-region-office/bhubaneswar-branch-office/",
+  "city": "Bhubaneswar"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Guwahati Branch Office (GHBO)",
+  "region": "eastern",
+  "address": "2nd Floor, West End Block, HOUSEFED Building Complex, Last Gate, Dispur, Guwahati 781006",
+  "phone": "0361-2225937",
+  "email": "hghbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/eastern-region-office/guwahati-branch-office/",
+  "city": "Guwahati"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Jamshedpur Branch Office (JDBO)",
+  "region": "eastern",
+  "address": "55 and 57, M Road, Bistupur, Jamshedpur 831001 (Jharkhand)",
+  "phone": "0657-2345481, 0657-2345498",
+  "email": "hjdbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/eastern-region-office/jamshedpur-branch-office/",
+  "city": "Jamshedpur"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Kolkata Branch Office (KKBO)",
+  "region": "eastern",
+  "address": "NSIC Building, 7th Floor, CP Block, Plot No. 7/7 & 7/8, Salt Lake, Sector V, Kolkata 700091 (West Bengal)",
+  "phone": "033-23670013, 033-23670014",
+  "email": "kkbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/eastern-region-office/kolkata-branch-office-i/",
+  "city": "Kolkata"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Patna Branch Office (PTBO)",
+  "region": "eastern",
+  "address": "Patna, Bihar",
+  "phone": null,
+  "email": null,
+  "source_url": "https://www.bis.gov.in/branch-office/",
+  "city": "Patna"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Raipur Branch Office",
+  "region": "eastern",
+  "address": "Raipur, Chhattisgarh",
+  "phone": null,
+  "email": null,
+  "source_url": "https://www.bis.gov.in/branch-office/",
+  "city": "Raipur"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Bengaluru Branch Office (BNBO)",
+  "region": "southern",
+  "address": "Peenya Industrial Area, 1st Stage, Bengaluru-Tumkur Road, Bengaluru 560058",
+  "phone": "080-28395604, 080-28394955",
+  "email": "bnbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/southern-region-office/bengaluru-branch-office/",
+  "city": "Bengaluru"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Chennai Branch Office (CNBO)",
+  "region": "southern",
+  "address": "C.I.T. Campus, IV Cross Road, Taramani, Chennai 600113",
+  "phone": "044-22541220",
+  "email": "cnbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/southern-region-office/chennai-branch-office/",
+  "city": "Chennai"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Coimbatore Branch Office (CTBO)",
+  "region": "southern",
+  "address": "BSNL DTAX Building, Third Floor, Race Course, Coimbatore 641018",
+  "phone": "0422-2248892, 0422-2240141",
+  "email": "ctbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/southern-region-office/coimbatore-branch-office/",
+  "city": "Coimbatore"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Hyderabad Branch Office (HYBO)",
+  "region": "southern",
+  "address": "Plot No. 1, Survey No. 367/1, ZTS-NFC Main Road, Industrial Development Park, Moula-Ali, Hyderabad 500040",
+  "phone": "9154843235",
+  "email": "hhybo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/southern-region-office/hyderabad-branch-office/",
+  "city": "Hyderabad"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Hubli Branch Office (HUBO)",
+  "region": "southern",
+  "address": "1st Floor, KSFC Building, Hubli-Dharwad Highway, Rayapur, Dharwad, Karnataka 580009",
+  "phone": "9871107370",
+  "email": "hubo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/southern-region-office/hubli-branch-office/",
+  "city": "Dharwad"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Kochi Branch Office (KOBO)",
+  "region": "southern",
+  "address": "CWC Regional Office Complex, II Floor, Maveli Road, Gandhi Nagar, Kadavanthra (P.O.), Kochi 682020 (Kerala)",
+  "phone": "0484-2207066, 0484-2207174",
+  "email": "hkobo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/southern-region-office/kochi-branch-office/",
+  "city": "Kochi"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Vijayawada Branch Office (VJBO)",
+  "region": "southern",
+  "address": "# 56-2-11, 1st Floor, APMARKFED Building, APIIC Colony, Jawahar Autonagar, Vijayawada 520007 (Andhra Pradesh)",
+  "phone": "0866-3501605",
+  "email": "hvjbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/southern-region-office/vishakapatnam-branch-office/",
+  "city": "Vijayawada"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Ahmedabad Branch Office (AHBO)",
+  "region": "western",
+  "address": "3rd Floor, Navajivan Amrut Jayanti Bhavan, Behind Gujarat Vidyapith, Off. Ashram Road, Ahmedabad 380014 (Gujarat)",
+  "phone": "079-27540323, 079-27540314",
+  "email": "hahbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/western-region-office/ahmedabad-branch-office/",
+  "city": "Ahmedabad"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Surat Branch Office (SUBO)",
+  "region": "western",
+  "address": "First Floor, Doorsanchar Bhavan, Karimabad, Admin Building, Ghod Dod Road, Surat 395001",
+  "phone": "0261-2991171, 0261-2990071",
+  "email": "headsubo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/western-region-office/surat-branch-office/",
+  "city": "Surat"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Mumbai Branch Office I (MUBO-I)",
+  "region": "western",
+  "address": "05th Floor, MTNL CETTM Building, Technology Street, Hiranandani Gardens, Powai, Mumbai 400076",
+  "phone": "022-25700030",
+  "email": "hmubo1@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/western-region-office/mumbai-branch-office-i/",
+  "city": "Mumbai"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Nagpur Branch Office (NGBO)",
+  "region": "western",
+  "address": "Indian Bureau of Mines, Block 'A' & 'D', 8th Floor, Indira Bhavan, Civil Lines, Nagpur 440001 (Maharashtra)",
+  "phone": "0712-2540807",
+  "email": "hngbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/western-region-office/nagpur-branch-office/",
+  "city": "Nagpur"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Pune Branch Office (PNBO)",
+  "region": "western",
+  "address": "657-660, MAIDC Building, Market Yard, Gultekadi, Pune 411037",
+  "phone": "020-24264911",
+  "email": "hpnbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/western-region-office/pune-branch-office/",
+  "city": "Pune"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Rajkot Branch Office (RJBO)",
+  "region": "western",
+  "address": "F.P. No. 364/P, Ward No. 13, Opposite Crystal Mall, Next to Bharat Petrol Pump, Kalawad Road, Rajkot 360005",
+  "phone": "0281-2563978, 0281-2563983",
+  "email": "hrjbo@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/western-region-office/rajkot-branch-office/",
+  "city": "Rajkot"
+ },
+ {
+  "office_type": "branch_office",
+  "name": "Gandhidham Branch Office (GDBO)",
+  "region": "western",
+  "address": "F.P. No. 364/P, Ward No. 13, Opposite Crystal Mall, Kalawad Road, Rajkot 360005 (listed address per BIS directory)",
+  "phone": "0281-2563978",
+  "email": "rjbo-2@bis.gov.in",
+  "source_url": "https://www.bis.gov.in/index.php/branches/western-region-office/gandhidham-branch-office/",
+  "city": "Rajkot"
+ }
+]

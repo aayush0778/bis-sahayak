@@ -48,7 +48,7 @@ export function chatRouter(db: DB, ai: AIClient): Router {
         return;
       }
       const messages = await db.query(
-        "SELECT id, role, content, citations, grounded, created_at FROM chat_messages " +
+        "SELECT id, role, content, citations, grounded, synthesis, fell_back AS \"fellBack\", created_at FROM chat_messages " +
           "WHERE session_id = $1 ORDER BY created_at ASC",
         [req.params.id],
       );
@@ -85,9 +85,9 @@ export function chatRouter(db: DB, ai: AIClient): Router {
         body.content,
       ]);
       const assistant = await db.query(
-        "INSERT INTO chat_messages (session_id, role, content, citations, grounded) " +
-          "VALUES ($1, 'assistant', $2, $3::jsonb, $4) RETURNING id, role, content, citations, grounded, created_at",
-        [req.params.id, rag.answer, JSON.stringify(rag.citations ?? []), rag.grounded ?? true],
+        "INSERT INTO chat_messages (session_id, role, content, citations, grounded, synthesis, fell_back) " +
+          "VALUES ($1, 'assistant', $2, $3::jsonb, $4, $5, $6) RETURNING id, role, content, citations, grounded, synthesis, fell_back, created_at",
+        [req.params.id, rag.answer, JSON.stringify(rag.citations ?? []), rag.grounded ?? true, (rag as { synthesis?: string }).synthesis ?? null, (rag as { fellBack?: boolean }).fellBack ?? false],
       );
       res.status(201).json(assistant.rows[0]);
     } catch (err) {

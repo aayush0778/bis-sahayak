@@ -30,53 +30,64 @@ export default function Register() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-16">
-      <h1 className="text-2xl font-bold">Create your account</h1>
-      <p className="mt-1 text-sm text-slate-600">Businesses get the applicability engine and radar watches; consumers get verification and complaint drafting.</p>
+      <h1 className="font-serif text-2xl font-bold text-ink">Create your account</h1>
+      <div className="mt-2 border-t border-paper-edge pt-2 text-sm text-ink-soft">
+        Businesses get the applicability engine and radar watches; consumers get verification and complaint
+        drafting.
+      </div>
 
-      <form onSubmit={onSubmit} className="mt-6 space-y-4 rounded-xl border border-ink-100 bg-white p-6 shadow-sm">
-        <div className="grid grid-cols-2 gap-2">
-          {(["business", "consumer"] as const).map((r) => (
-            <button
-              key={r}
-              type="button"
-              onClick={() => setRole(r)}
-              className={`rounded-lg border px-3 py-2 text-sm font-semibold capitalize ${
-                role === r ? "border-ink-800 bg-ink-800 text-white" : "border-ink-200 bg-white hover:bg-ink-50"
-              }`}
-            >
-              I'm a {r}
-            </button>
-          ))}
-        </div>
+      <form onSubmit={onSubmit} className="mt-6 border border-paper-edge bg-white/60 p-6" noValidate>
+        <fieldset>
+          <legend className="text-sm font-medium text-ink">I am registering as a</legend>
+          <div className="mt-2 grid grid-cols-2 gap-2">
+            {(["business", "consumer"] as const).map((r) => (
+              <button
+                key={r}
+                type="button"
+                onClick={() => setRole(r)}
+                aria-pressed={role === r}
+                className={`border px-3 py-2 text-sm font-semibold capitalize ${
+                  role === r
+                    ? "border-navy bg-navy text-white"
+                    : "border-paper-edge bg-white text-ink hover:bg-navy-wash"
+                }`}
+              >
+                {r}
+              </button>
+            ))}
+          </div>
+        </fieldset>
 
         {role === "business" && (
-          <div>
-            <label htmlFor="businessName" className="block text-sm font-medium">
+          <div className="mt-4">
+            <label htmlFor="businessName" className="block text-sm font-medium text-ink">
               Business name
             </label>
             <input
               id="businessName"
+              autoComplete="organization"
               value={businessName}
               onChange={(e) => setBusinessName(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-ink-200 px-3 py-2 focus:border-ink-700 focus:outline-none"
+              className="mt-1 w-full border border-paper-edge bg-paper px-3 py-2 text-ink focus:border-navy focus:outline-none"
             />
           </div>
         )}
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium">
+        <div className="mt-4">
+          <label htmlFor="email" className="block text-sm font-medium text-ink">
             Email
           </label>
           <input
             id="email"
             type="email"
             required
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-ink-200 px-3 py-2 focus:border-ink-700 focus:outline-none"
+            className="mt-1 w-full border border-paper-edge bg-paper px-3 py-2 text-ink focus:border-navy focus:outline-none"
           />
         </div>
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium">
+        <div className="mt-4">
+          <label htmlFor="password" className="block text-sm font-medium text-ink">
             Password (min 8 characters)
           </label>
           <input
@@ -84,24 +95,29 @@ export default function Register() {
             type="password"
             required
             minLength={8}
+            autoComplete="new-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-ink-200 px-3 py-2 focus:border-ink-700 focus:outline-none"
+            className="mt-1 w-full border border-paper-edge bg-paper px-3 py-2 text-ink focus:border-navy focus:outline-none"
           />
         </div>
-        {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+        {error && (
+          <p role="alert" className="mt-4 border-l-2 border-signal bg-signal-wash px-3 py-2 text-sm text-signal">
+            {error}
+          </p>
+        )}
         <button
           type="submit"
           disabled={busy}
-          className="w-full rounded-lg bg-ink-800 py-2.5 font-semibold text-white hover:bg-ink-900 disabled:opacity-60"
+          className="mt-5 w-full border border-navy bg-navy py-2.5 font-medium text-white hover:bg-navy-deep disabled:opacity-60"
         >
           {busy ? "Creating account…" : role === "business" ? "Create business account" : "Create consumer account"}
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-slate-600">
+      <p className="mt-6 text-center text-sm text-ink-soft">
         Already registered?{" "}
-        <Link to="/login" className="font-semibold text-ink-700 hover:underline">
+        <Link to="/login" className="font-semibold text-navy underline underline-offset-4">
           Sign in
         </Link>
       </p>

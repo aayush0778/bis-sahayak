@@ -7,12 +7,16 @@ key/base URL upgrades answer quality without touching retrieval or contracts.
 """
 import os
 import re
+import time
 
 from .prompts import ANSWER_SYSTEM_PROMPT, COMPLAINT_SYSTEM_PROMPT
 
 API_KEY = os.environ.get("LLM_API_KEY", "")
 BASE_URL = os.environ.get("LLM_BASE_URL", "https://api.openai.com/v1")
 MODEL = os.environ.get("LLM_MODEL", "gpt-4o-mini")
+# Free-tier endpoints stall and rate-limit: hard per-call timeout, one retry.
+LLM_TIMEOUT_S = float(os.environ.get("LLM_TIMEOUT_S", "12"))
+LLM_RETRY_WAIT_S = float(os.environ.get("LLM_RETRY_WAIT_S", "1"))
 
 
 def _trim(text: str, limit: int = 300) -> str:
@@ -23,6 +27,11 @@ def _trim(text: str, limit: int = 300) -> str:
 
 
 def _call_llm(system: str, user: str) -> str | None:
+    """One LLM attempt with a hard timeout; never raises.
+
+    Free-tier endpoints rate-limit and stall, so callers get None on any
+    failure and fall back to the extractive synthesizer.
+    """
     if not API_KEY:
         return None
     try:
@@ -40,7 +49,7 @@ def _call_llm(system: str, user: str) -> str | None:
                     {"role": "user", "content": user},
                 ],
             },
-            timeout=40.0,
+            timeout=LLM_TIMEOUT_S,
         )
         response.raise_for_status()
         return response.json()["choices"][0]["message"]["content"]
@@ -48,15 +57,37 @@ def _call_llm(system: str, user: str) -> str | None:
         return None
 
 
-def synthesize_answer(query: str, blocks: list[dict]) -> str:
-    """Compose a citation-grounded answer for the retrieved chunks."""
+def _call_llm_with_retry(system: str, user: str) -> str | None:
+    """Timeout + one retry (the brief's resilience requirement for rate-limited free tiers)."""
+    for attempt in range(2):
+        result = _call_llm(system, user)
+        if result is not None:
+            return result
+        if attempt == 0:
+            time.sleep(LLM_RETRY_WAIT_S)
+    return None
+
+
+def synthesize_answer(query: str, blocks: list[dict]) -> tuple[str, str, bool]:
+    """Compose a citation-grounded answer for the retrieved chunks.
+
+    Returns (answer, synthesis, fell_back):
+      synthesis  — "llm" when the model wrote it, "corpus" for the extractive composer
+      fell_back  — True when the LLM was attempted but failed and the composer took over
+    """
     user_content = "\n\n".join(
         f"[{i + 1}] ({b['ref']})\n{_trim(b['chunk_text'], 500)}" for i, b in enumerate(blocks)
     )
-    llm = _call_llm(ANSWER_SYSTEM_PROMPT, f"Question: {query}\n\nContext blocks:\n{user_content}")
-    if llm:
-        return llm
+    if API_KEY:
+        llm = _call_llm_with_retry(ANSWER_SYSTEM_PROMPT, f"Question: {query}\n\nContext blocks:\n{user_content}")
+        if llm:
+            return llm, "llm", False
+        answer = _extractive_answer(query, blocks)
+        return answer, "corpus", True
+    return _extractive_answer(query, blocks), "corpus", False
 
+
+def _extractive_answer(query: str, blocks: list[dict]) -> str:
     lines = [
         f"Here is what BIS Sahayak's seeded corpus (BIS Know-Your-Standards metadata and "
         f"QCO notifications) has on file for \"{_trim(query, 120)}\":",

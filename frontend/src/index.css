@@ -1,3 +1,5 @@
+@import "leaflet/dist/leaflet.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,5 +9,72 @@ html {
 }
 
 body {
-  @apply text-ink-800 antialiased;
+  @apply bg-paper text-ink font-sans antialiased;
+}
+
+/* Visible keyboard focus everywhere (accessibility floor) */
+:focus-visible {
+  outline: 2px solid #1e3a5f;
+  outline-offset: 2px;
+}
+
+/* Hairline rule helper */
+@layer utilities {
+  .rule {
+    border-color: #e7e1d3;
+  }
+  .smallcaps {
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* The single deliberate motion: citation chips stamp into place. */
+.stamp-in {
+  animation: stamp 260ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .stamp-in {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Leaflet map container needs an explicit height context */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  background: #f2eee3;
+  font-family: inherit;
+}
+
+/* Print: only the receipt/notice survives (verification receipts, applicability notices) */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print\:hidden,
+  header,
+  footer,
+  nav {
+    display: none !important;
+  }
+  article,
+  article * {
+    visibility: visible;
+  }
+  article {
+    position: absolute;
+    inset: 0;
+    border-color: #1c1b19 !important;
+  }
 }

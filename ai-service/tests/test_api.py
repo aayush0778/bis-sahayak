@@ -25,7 +25,7 @@ def test_answer_contract(monkeypatch):
     response = client.post("/rag/answer", json={"query": "electric kettle certification", "history": []})
     assert response.status_code == 200
     body = response.json()
-    assert set(body) == {"answer", "citations", "grounded"}
+    assert set(body) == {"answer", "citations", "grounded", "synthesis", "fellBack"}
     assert isinstance(body["citations"], list)
     assert body["citations"][0]["ref"] == "IS 302 (Part 2/Sec 15)"
 

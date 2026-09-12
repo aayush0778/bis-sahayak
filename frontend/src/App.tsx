@@ -10,6 +10,9 @@ import Radar from "./pages/Radar";
 import Verify from "./pages/Verify";
 import Complaints from "./pages/Complaints";
 import Dashboard from "./pages/Dashboard";
+import Offices from "./pages/Offices";
+import Contact from "./pages/Contact";
+import Marks from "./pages/Marks";
 
 export default function App() {
   return (
@@ -36,6 +39,9 @@ export default function App() {
         />
         <Route path="/radar" element={<Radar />} />
         <Route path="/verify" element={<Verify />} />
+        <Route path="/marks" element={<Marks />} />
+        <Route path="/offices" element={<Offices />} />
+        <Route path="/contact" element={<Contact />} />
         <Route
           path="/complaints"
           element={

@@ -77,7 +77,8 @@ def test_extractive_synthesizer_cites_every_block():
          "source_url": "https://example.org/qco", "chunk_text": "QCO: Domestic Pressure Cooker (Quality Control) Order, 2020. Effective 2020-08-01.",
          "similarity": 0.5},
     ]
-    answer = llm.synthesize_answer("pressure cooker certification", blocks)
+    answer, synthesis, fell_back = llm.synthesize_answer("pressure cooker certification", blocks)
+    assert synthesis == "corpus" and fell_back is False
     assert "IS 2347:2017" in answer
     assert "Domestic Pressure Cooker (Quality Control) Order, 2020" in answer
 
@@ -87,5 +88,18 @@ def test_offline_mode_never_calls_network(monkeypatch):
     import os
 
     monkeypatch.setenv("LLM_API_KEY", "")
-    answer = llm.synthesize_answer("kettle", [_chunk("IS 302 (Part 2/Sec 15)", 0.6)])
-    assert answer.strip()
+    answer, synthesis, fell_back = llm.synthesize_answer("kettle", [_chunk("IS 302 (Part 2/Sec 15)", 0.6)])
+    assert answer.strip() and synthesis == "corpus" and fell_back is False
+
+
+def test_llm_failure_falls_back_to_corpus(monkeypatch):
+    # API key present, but the model stalls/fails -> extractive composer takes
+    # over and the response honestly flags the fallback.
+    import app.llm as llm_mod
+
+    monkeypatch.setattr(llm_mod, "API_KEY", "test-key", raising=False)
+    monkeypatch.setattr(llm_mod, "_call_llm_with_retry", lambda s, u: None)
+    answer, synthesis, fell_back = llm_mod.synthesize_answer("kettle", [_chunk("IS 302 (Part 2/Sec 15)", 0.6)])
+    assert fell_back is True
+    assert synthesis == "corpus"
+    assert "IS 302 (Part 2/Sec 15)" in answer

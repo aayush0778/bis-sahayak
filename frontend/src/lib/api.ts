@@ -70,6 +70,10 @@ export interface ChatMessage {
   content: string;
   citations?: Citation[] | null;
   grounded?: boolean;
+  /** "llm" = model synthesis, "corpus" = extractive composer, undefined = legacy backend */
+  synthesis?: "llm" | "corpus";
+  /** true when the LLM was tried but failed and the extractive composer took over */
+  fellBack?: boolean;
   created_at?: string;
 }
 
@@ -145,4 +149,20 @@ export interface Watch {
   id: string;
   product_category: string;
   created_at: string;
+}
+
+export interface Office {
+  office_type: "hq" | "regional_office" | "branch_office" | "laboratory";
+  name: string;
+  region: string | null;
+  address: string;
+  phone: string | null;
+  email: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  source_url: string;
+}
+
+export async function getOffices(): Promise<{ items: Office[]; note: string }> {
+  return api<{ items: Office[]; note: string }>("/offices");
 }

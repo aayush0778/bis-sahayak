@@ -84,6 +84,8 @@ CREATE TABLE IF NOT EXISTS chat_messages (
   content TEXT NOT NULL,
   citations JSONB, -- [{ "type": "standard", "ref": "IS 302 (Part 1):2024", "source_url": "..." }, ...]
   grounded BOOLEAN DEFAULT TRUE,
+  synthesis TEXT, -- 'llm' | 'corpus' (v2: synthesis-source transparency)
+  fell_back BOOLEAN DEFAULT FALSE, -- v2: true when the LLM failed and the extractive composer took over
   created_at TIMESTAMPTZ DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS chat_messages_session ON chat_messages (session_id, created_at);
@@ -105,6 +107,25 @@ CREATE TABLE IF NOT EXISTS complaints (
   defect_description TEXT NOT NULL,
   related_record_number TEXT,
   draft JSONB,
+  cpgrams_url TEXT,
   status TEXT DEFAULT 'draft' CHECK (status IN ('draft', 'submitted')),
   created_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- v2: BIS physical footprint (HQ, regional offices, branch offices, laboratories).
+-- Every row carries the official source URL it was transcribed from.
+CREATE TABLE IF NOT EXISTS bis_offices (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  office_type TEXT NOT NULL CHECK (office_type IN ('hq', 'regional_office', 'branch_office', 'laboratory')),
+  name TEXT NOT NULL,
+  region TEXT,
+  address TEXT NOT NULL,
+  phone TEXT,
+  email TEXT,
+  latitude DOUBLE PRECISION,
+  longitude DOUBLE PRECISION,
+  geocode_precision TEXT,
+  source_url TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  UNIQUE (name)
 );

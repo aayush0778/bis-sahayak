@@ -2,9 +2,19 @@
 
 **SIH26107** · Ministry of Consumer Affairs, Food & Public Distribution · Theme: Smart Automation
 
-> ☁️ **Deploying?** See [DEPLOY.md](DEPLOY.md) for the full GitHub + Railway walkthrough (all four services, including pgvector Postgres, private networking, and the one-time data bootstrap).
+> ☁️ **Deployed:** https://bis-sahayak-eight.vercel.app — deployment details in [DEPLOY.md](DEPLOY.md). Design system: [frontend/DESIGN.md](frontend/DESIGN.md).
 
 BIS Sahayak closes the loop no existing BIS channel closes: **product → applicable standards → mandatory or voluntary → which scheme → what changed recently → next step**, in natural language, with citations, for both an MSME founder and a routine consumer.
+
+### What's in v2 (prototype → product)
+
+- **"Gazette" design system** ([DESIGN.md](frontend/DESIGN.md)) — warm paper/ink/navy/brass tokens, serif headings, hairline rules, a hexagonal seal motif; the Applicability result reads as a bordered *Notice of Applicability* with a generated reference number, and the QCO Radar reads as a gazette timeline.
+- **LLM resilience** — OpenAI-compatible synthesis with hard timeout + one retry; on failure it falls back to the extractive composer and the UI says so honestly ("Language model unavailable — answered directly from the verified sources cited above"). The two-factor grounding gate is unchanged.
+- **Offices & Labs locator** — all 47 BIS locations (HQ, 5 regional offices, all 33 branch offices, 8 laboratories) transcribed from bis.gov.in with per-row source URLs, geocoded (Photon/Nominatim, OSM), on a Leaflet/OSM map with nearest-office (browser geolocation + haversine) and a manual search fallback.
+- **Help & Contacts** — the 1800 11 1206 helpline, complaints channels, and CPGRAMS hand-off; the Complaint Copilot's submit step now points at the real government portal.
+- **Know Your Mark** — labeled schematics of the ISI mark, BIS Hallmark (triangle + purity grade + HUID + jeweller's ID) and CRS registration, part by part.
+- **Exports** — QCO deadlines as an `.ics` calendar; any applicability result as a copy-ready compliance note; verification results as printable PDF receipts.
+- Accessibility floor: focus-visible rings, labelled forms, `aria-live` result regions, `prefers-reduced-motion` respected.
 
 ## Architecture
 

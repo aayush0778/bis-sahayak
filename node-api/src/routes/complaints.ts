@@ -24,15 +24,16 @@ export function complaintsRouter(db: DB, ai: AIClient): Router {
         relatedRecordNumber: body.relatedRecordNumber ?? null,
       });
       const result = await db.query(
-        "INSERT INTO complaints (user_id, product_description, defect_description, related_record_number, draft) " +
-          "VALUES ($1, $2, $3, $4, $5::jsonb) RETURNING id, product_description, defect_description, " +
-          "related_record_number, draft, status, created_at",
+        "INSERT INTO complaints (user_id, product_description, defect_description, related_record_number, draft, cpgrams_url) " +
+          "VALUES ($1, $2, $3, $4, $5::jsonb, $6) RETURNING id, product_description, defect_description, " +
+          "related_record_number, draft, cpgrams_url, status, created_at",
         [
           req.user!.id,
           body.productDescription,
           body.defectDescription,
           body.relatedRecordNumber ?? rag.draft.relatedRecordNumber ?? null,
           JSON.stringify(rag.draft),
+          "https://pgportal.gov.in",
         ],
       );
       res.status(201).json({ complaint: result.rows[0], citations: rag.citations });

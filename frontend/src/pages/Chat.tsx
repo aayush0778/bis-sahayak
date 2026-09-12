@@ -9,6 +9,27 @@ const SUGGESTIONS = [
   "What is the Transition Facilitation QCO?",
 ];
 
+function SynthesisNote({ message }: { message: ChatMessage }) {
+  if (message.grounded === false) {
+    return (
+      <p className="mt-1 text-xs text-ink-faint">
+        Refused honestly — the corpus has nothing on this, and Sahayak does not improvise.
+      </p>
+    );
+  }
+  if (message.fellBack) {
+    return (
+      <p className="mt-1 text-xs text-moss">
+        Language model unavailable — answered directly from the verified sources cited above.
+      </p>
+    );
+  }
+  if (message.synthesis === "corpus") {
+    return <p className="mt-1 text-xs text-ink-faint">Composed directly from the cited records (extractive mode).</p>;
+  }
+  return <p className="mt-1 text-xs text-ink-faint">Synthesised by the language model strictly from the cited records.</p>;
+}
+
 export default function Chat() {
   const [sessions, setSessions] = useState<ChatSession[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -17,6 +38,7 @@ export default function Chat() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const [liveMsg, setLiveMsg] = useState("");
 
   useEffect(() => {
     api<{ items: ChatSession[] }>("/chat/sessions")
@@ -57,6 +79,7 @@ export default function Chat() {
     if (!content || busy) return;
     setError(null);
     setBusy(true);
+    setLiveMsg("");
     setInput("");
 
     let sessionId = activeId;
@@ -73,6 +96,7 @@ export default function Chat() {
         body: { content },
       });
       setMessages((prev) => [...prev, reply]);
+      setLiveMsg(new Date().toISOString()); // triggers the stamp animation on the fresh chips
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -86,45 +110,45 @@ export default function Chat() {
   }
 
   return (
-    <div className="mx-auto flex h-[calc(100vh-3.5rem-2.5rem)] max-w-6xl gap-0 px-0">
-      <aside className="hidden w-64 shrink-0 flex-col border-r border-ink-100 bg-white md:flex">
+    <div className="mx-auto flex h-[calc(100vh-3.5rem-2.5rem)] max-w-6xl">
+      <aside className="hidden w-64 shrink-0 flex-col border-r border-paper-edge bg-paper-deep/50 md:flex">
         <button
           onClick={() => void newSession()}
-          className="m-3 rounded-lg bg-saffron-500 py-2 text-sm font-semibold text-ink-900 hover:bg-saffron-400"
+          className="mx-3 mt-3 border border-navy bg-navy py-2 text-sm font-medium text-white hover:bg-navy-deep"
         >
           + New chat
         </button>
-        <div className="flex-1 space-y-1 overflow-y-auto px-2 pb-3">
+        <div className="flex-1 space-y-0.5 overflow-y-auto px-2 pb-3 pt-3">
           {sessions.map((s) => (
             <button
               key={s.id}
               onClick={() => void openSession(s.id)}
-              className={`block w-full truncate rounded-lg px-3 py-2 text-left text-sm hover:bg-ink-50 ${
-                activeId === s.id ? "bg-ink-100 font-medium text-ink-900" : "text-slate-600"
+              className={`block w-full truncate px-3 py-2 text-left text-sm hover:bg-navy-wash ${
+                activeId === s.id ? "bg-navy-wash font-medium text-navy" : "text-ink-soft"
               }`}
             >
               {s.title || "Untitled chat"}
             </button>
           ))}
-          {sessions.length === 0 && <p className="px-3 py-2 text-xs text-slate-400">No sessions yet.</p>}
+          {sessions.length === 0 && <p className="px-3 py-2 text-xs text-ink-faint">No sessions yet.</p>}
         </div>
       </aside>
 
       <section className="flex min-w-0 flex-1 flex-col">
-        <div className="flex-1 space-y-4 overflow-y-auto px-4 py-6">
+        <div aria-live="polite" className="flex-1 space-y-5 overflow-y-auto px-4 py-6">
           {messages.length === 0 && (
             <div className="mx-auto max-w-xl pt-10 text-center">
-              <h1 className="text-xl font-bold">Ask about Indian Standards or QCOs</h1>
-              <p className="mt-2 text-sm text-slate-600">
+              <h1 className="font-serif text-2xl font-bold text-ink">Ask about Indian Standards or QCOs</h1>
+              <p className="mt-3 border-t border-paper-edge pt-3 text-sm leading-relaxed text-ink-soft">
                 Answers are grounded in BIS Sahayak's seeded corpus and cite the IS number or QCO name. When
-                something isn't on file, Sahayak will say so plainly.
+                something isn't on file, Sahayak says so plainly.
               </p>
               <div className="mt-6 flex flex-wrap justify-center gap-2">
                 {SUGGESTIONS.map((s) => (
                   <button
                     key={s}
                     onClick={() => void send(s)}
-                    className="rounded-full border border-ink-200 bg-white px-3 py-1.5 text-xs text-slate-600 hover:border-ink-700 hover:text-ink-900"
+                    className="border border-paper-edge bg-white/70 px-3 py-1.5 text-xs text-ink-soft hover:border-navy hover:text-navy"
                   >
                     {s}
                   </button>
@@ -136,58 +160,62 @@ export default function Chat() {
           {messages.map((m) =>
             m.role === "user" ? (
               <div key={m.id} className="flex justify-end">
-                <div className="max-w-[80%] whitespace-pre-wrap rounded-2xl rounded-br-sm bg-ink-800 px-4 py-2.5 text-sm text-white">
+                <div className="max-w-[80%] whitespace-pre-wrap border-l-2 border-brass bg-paper-deep px-4 py-2.5 text-sm text-ink">
                   {m.content}
                 </div>
               </div>
             ) : (
               <div key={m.id} className="max-w-[85%]">
                 <div
-                  className={`whitespace-pre-wrap rounded-2xl rounded-bl-sm px-4 py-3 text-sm ${
+                  className={`border-l-2 px-4 py-3 text-sm leading-relaxed ${
                     m.grounded === false
-                      ? "border border-amber-300 bg-amber-50 text-amber-900"
-                      : "border border-ink-100 bg-white text-ink-900"
+                      ? "border-signal bg-signal-wash text-ink"
+                      : "border-navy bg-white/80 text-ink"
                   }`}
                 >
                   {m.grounded === false && (
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-amber-600">
-                      Not in corpus — honest no-answer
-                    </p>
+                    <p className="smallcaps mb-2 text-xs font-bold text-signal">Not in corpus — honest no-answer</p>
                   )}
                   {m.content}
                 </div>
                 {m.citations && m.citations.length > 0 && (
                   <div className="mt-2 flex flex-wrap gap-1.5">
                     {m.citations.map((c, i) => (
-                      <CitationChip key={`${c.ref}-${i}`} citation={c} />
+                      <CitationChip key={`${c.ref}-${i}`} citation={c} animate={liveMsg !== ""} />
                     ))}
                   </div>
                 )}
+                <SynthesisNote message={m} />
               </div>
             ),
           )}
 
           {busy && (
-            <div className="max-w-[85%] rounded-2xl border border-ink-100 bg-white px-4 py-3 text-sm text-slate-400">
+            <div className="max-w-[85%] border-l-2 border-paper-edge bg-white/60 px-4 py-3 text-sm text-ink-faint">
               Searching the corpus and drafting a cited answer…
             </div>
           )}
-          {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+          {error && (
+            <p role="alert" className="border-l-2 border-signal bg-signal-wash px-3 py-2 text-sm text-signal">
+              {error}
+            </p>
+          )}
           <div ref={bottomRef} />
         </div>
 
-        <form onSubmit={onSubmit} className="border-t border-ink-100 bg-white p-3">
+        <form onSubmit={onSubmit} className="border-t border-paper-edge bg-paper p-3">
           <div className="flex gap-2">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              aria-label="Ask a question about Indian Standards or QCOs"
               placeholder="e.g. I make immersion rods — what do I need before selling them?"
-              className="flex-1 rounded-lg border border-ink-200 px-3 py-2.5 text-sm focus:border-ink-700 focus:outline-none"
+              className="flex-1 border border-paper-edge bg-white/80 px-3 py-2.5 text-sm text-ink focus:border-navy focus:outline-none"
             />
             <button
               type="submit"
               disabled={busy || !input.trim()}
-              className="rounded-lg bg-ink-800 px-5 py-2.5 text-sm font-semibold text-white hover:bg-ink-900 disabled:opacity-50"
+              className="border border-navy bg-navy px-5 py-2.5 text-sm font-medium text-white hover:bg-navy-deep disabled:opacity-50"
             >
               Send
             </button>

@@ -33,62 +33,76 @@ export default function Login() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-16">
-      <h1 className="text-2xl font-bold">Sign in to BIS Sahayak</h1>
-      <p className="mt-1 text-sm text-slate-600">Chat, applicability checks and the complaint copilot need an account.</p>
+      <h1 className="font-serif text-2xl font-bold text-ink">Sign in to BIS Sahayak</h1>
+      <div className="mt-2 border-t border-paper-edge pt-2 text-sm text-ink-soft">
+        Chat, applicability checks and the complaint copilot need an account.
+      </div>
 
-      <form onSubmit={onSubmit} className="mt-6 space-y-4 rounded-xl border border-ink-100 bg-white p-6 shadow-sm">
+      <form onSubmit={onSubmit} className="mt-6 border border-paper-edge bg-white/60 p-6" noValidate>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium">
+          <label htmlFor="email" className="block text-sm font-medium text-ink">
             Email
           </label>
           <input
             id="email"
             type="email"
             required
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-ink-200 px-3 py-2 focus:border-ink-700 focus:outline-none"
+            className="mt-1 w-full border border-paper-edge bg-paper px-3 py-2 text-ink focus:border-navy focus:outline-none"
           />
         </div>
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium">
+        <div className="mt-4">
+          <label htmlFor="password" className="block text-sm font-medium text-ink">
             Password
           </label>
           <input
             id="password"
             type="password"
             required
+            autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-ink-200 px-3 py-2 focus:border-ink-700 focus:outline-none"
+            className="mt-1 w-full border border-paper-edge bg-paper px-3 py-2 text-ink focus:border-navy focus:outline-none"
           />
         </div>
-        {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+        {error && (
+          <p role="alert" className="mt-4 border-l-2 border-signal bg-signal-wash px-3 py-2 text-sm text-signal">
+            {error}
+          </p>
+        )}
         <button
           type="submit"
           disabled={busy}
-          className="w-full rounded-lg bg-ink-800 py-2.5 font-semibold text-white hover:bg-ink-900 disabled:opacity-60"
+          className="mt-5 w-full border border-navy bg-navy py-2.5 font-medium text-white hover:bg-navy-deep disabled:opacity-60"
         >
           {busy ? "Signing in…" : "Sign in"}
         </button>
       </form>
 
-      <div className="mt-4 rounded-xl bg-ink-100/60 p-4 text-sm">
-        <p className="font-medium text-ink-800">Quick demo access</p>
+      <div className="mt-4 border border-paper-edge bg-paper-deep p-4 text-sm">
+        <p className="smallcaps font-semibold text-navy">Quick demo access</p>
         <div className="mt-2 flex gap-2">
-          <button onClick={() => fillDemo("business@demo.bis")} className="rounded bg-white px-3 py-1.5 text-xs font-medium shadow-sm hover:bg-ink-50">
+          <button
+            onClick={() => fillDemo("business@demo.bis")}
+            className="border border-navy/40 bg-white px-3 py-1.5 text-xs font-medium text-navy hover:bg-navy-wash"
+          >
             Fill business demo
           </button>
-          <button onClick={() => fillDemo("consumer@demo.bis")} className="rounded bg-white px-3 py-1.5 text-xs font-medium shadow-sm hover:bg-ink-50">
+          <button
+            onClick={() => fillDemo("consumer@demo.bis")}
+            className="border border-navy/40 bg-white px-3 py-1.5 text-xs font-medium text-navy hover:bg-navy-wash"
+          >
             Fill consumer demo
           </button>
         </div>
-        <p className="mt-2 text-xs text-slate-500">Both demo accounts use the password Sahayak@123.</p>
+        <p className="mt-2 text-xs text-ink-faint">Both demo accounts use the password Sahayak@123.</p>
       </div>
 
-      <p className="mt-6 text-center text-sm text-slate-600">
+      <p className="mt-6 text-center text-sm text-ink-soft">
         No account?{" "}
-        <Link to="/register" className="font-semibold text-ink-700 hover:underline">
+        <Link to="/register" className="font-semibold text-navy underline underline-offset-4">
           Register
         </Link>
       </p>

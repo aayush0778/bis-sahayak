@@ -1,0 +1,310 @@
+{
+ "Manak Bhawan, 9 Bahadur Shah Zafar Marg, New Delhi 110002 | city=New Delhi": {
+  "lat": 28.6260566,
+  "lon": 77.2410549,
+  "precision": "secondary",
+  "query": "9 Bahadur Shah Zafar Marg, New Delhi 110002, India",
+  "source": "photon"
+ },
+ "601/A, Konnectus Tower-1, 6th Floor, DMRC Building, Bhavbhuti Marg, New Delhi 110002 | city=New Delhi": {
+  "lat": 28.6138954,
+  "lon": 77.2090057,
+  "precision": "city",
+  "query": "New Delhi, India",
+  "source": "photon"
+ },
+ "Plot No. 4-A, Sector 27-B, Madhya Marg, Chandigarh 160019 | city=Chandigarh": {
+  "lat": 30.725647,
+  "lon": 76.8080462,
+  "precision": "college",
+  "query": "Sector 27-B, Madhya Marg, Chandigarh 160019, India",
+  "source": "photon"
+ },
+ "V.I.P. Road, Kankurgachi, Kolkata 700054 | city=Kolkata": {
+  "lat": 22.5917929,
+  "lon": 88.3921872,
+  "precision": "food_court",
+  "query": "V.I.P. Road, Kankurgachi, Kolkata 700054, India",
+  "source": "photon"
+ },
+ "C.I.T. Campus, IV Cross Road, Chennai 600113 | city=Chennai": {
+  "lat": 12.8714121,
+  "lon": 80.2354245,
+  "precision": "university",
+  "query": "C.I.T. Campus, IV Cross Road, Chennai 600113, India",
+  "source": "photon"
+ },
+ "Manakalaya, E-9, M.I.D.C., Behind Marol Telephone Exchange, Andheri (East), Mumbai 400093 | city=Mumbai": {
+  "lat": 19.054999,
+  "lon": 72.8692035,
+  "precision": "city",
+  "query": "Mumbai, India",
+  "source": "photon"
+ },
+ "Plot No. 20/9, Site IV, Sahibabad Industrial Area, Sahibabad 201010 | city=Sahibabad, Ghaziabad": {
+  "lat": 28.6658511,
+  "lon": 77.3511529,
+  "precision": "suburb",
+  "query": "Site IV, Sahibabad Industrial Area, Sahibabad 201010, India",
+  "source": "photon"
+ },
+ "P-230, C.I.T. Scheme VII M, Block-W, Kankurgachi, Kolkata 700054 | city=Kolkata": {
+  "lat": 22.5841746,
+  "lon": 88.3914224,
+  "precision": "fast_food",
+  "query": "Block-W, Kankurgachi, Kolkata 700054, India",
+  "source": "photon"
+ },
+ "B-69, Phase VII, SAS Nagar Industrial Focal Point, Mohali 160051 | city=Mohali": {
+  "lat": 30.7178072,
+  "lon": 76.6985062,
+  "precision": "industrial",
+  "query": "SAS Nagar Industrial Focal Point, Mohali 160051, India",
+  "source": "photon"
+ },
+ "Manakalaya, E-9, M.I.D.C., Andheri (East), Mumbai 400093 | city=Mumbai": {
+  "lat": 19.1059204,
+  "lon": 72.8587984,
+  "precision": "tertiary",
+  "query": "Manakalaya, E-9, M.I.D.C., Andheri (East), Mumbai 400093, India",
+  "source": "photon"
+ },
+ "Peenya Industrial Area, 1st Stage, Bengaluru-Tumkur Road, Bengaluru 560058 | city=Bengaluru": {
+  "lat": 13.0352642,
+  "lon": 77.5269388,
+  "precision": "bus_stop",
+  "query": "Peenya Industrial Area, 1st Stage, Bengaluru-Tumkur Road, Bengaluru 560058, India",
+  "source": "photon"
+ },
+ "Pataliputra Industrial Estate, Patna 800013 | city=Patna": {
+  "lat": 25.625263692857143,
+  "lon": 85.10735205357143,
+  "precision": "postcode",
+  "query": "Patna 800013, India",
+  "source": "photon"
+ },
+ "2nd Floor, West End Block, HOUSEFED Building, Beltola, Dispur, Guwahati 781006 | city=Guwahati": {
+  "lat": 26.1243284,
+  "lon": 91.796421,
+  "precision": "post_office",
+  "query": "HOUSEFED Building, Beltola, Dispur, Guwahati 781006, India",
+  "source": "photon"
+ },
+ "Commercial cum Office Complex, Manakalya, Opp. Dushera Maidan, E-5 Area Colony, Bittan Market, Bhopal 462016 | city=Bhopal": {
+  "lat": 23.2584857,
+  "lon": 77.401989,
+  "precision": "city",
+  "query": "Bhopal, India",
+  "source": "photon"
+ },
+ "601 A, 6th Floor, Konnectus Tower, Bhavbhuti Marg, Ajmeri Gate, New Delhi 110002 | city=New Delhi": {
+  "lat": 28.6426552,
+  "lon": 77.2235687,
+  "precision": "bus_station",
+  "query": "Konnectus Tower, Bhavbhuti Marg, Ajmeri Gate, New Delhi 110002, India",
+  "source": "photon"
+ },
+ "Central Laboratory (Chemical Lab Block), Ground & 1st Floor, Plot No. 20/9, Site IV, Sahibabad Industrial Area, Sahibabad, Ghaziabad 201010 | city=Sahibabad, Ghaziabad": {
+  "lat": 28.6742784,
+  "lon": 77.3644349,
+  "precision": "station",
+  "query": "Sahibabad, Ghaziabad, India",
+  "source": "photon"
+ },
+ "Ground Floor, Bureau of Indian Standards, Prithvi Raj Road, Opp. Bharat Overseas Bank Limited, C-Scheme, Jaipur 302001 | city=Jaipur": {
+  "lat": 26.9154576,
+  "lon": 75.8189817,
+  "precision": "city",
+  "query": "Jaipur, India",
+  "source": "photon"
+ },
+ "Regional Telecom Training Centre, BSNL Building, Sector-G, LDA Colony, Ashiana, Lucknow 226012 (U.P.) | city=Lucknow": {
+  "lat": 26.7845433,
+  "lon": 80.8905154,
+  "precision": "locality",
+  "query": "Sector-G, LDA Colony, Ashiana, Lucknow 226012 (U.P.), India",
+  "source": "photon"
+ },
+ "NITS Campus, A-20 & 21, Institutional Area, Sector-62, Noida 201309 | city=Noida": {
+  "lat": 28.6152901,
+  "lon": 77.3645739,
+  "precision": "apartments",
+  "query": "A-20 & 21, Institutional Area, Sector-62, Noida 201309, India",
+  "source": "photon"
+ },
+ "Faridabad, Haryana | city=Faridabad": {
+  "lat": 28.4031478,
+  "lon": 77.3105561,
+  "precision": "city",
+  "query": "Faridabad, Haryana, India",
+  "source": "photon"
+ },
+ "Northern Regional Office, Plot No. 4-A, Sector 27-B, Madhya Marg, Chandigarh 160019 | city=Chandigarh": {
+  "lat": 30.725647,
+  "lon": 76.8080462,
+  "precision": "college",
+  "query": "Sector 27-B, Madhya Marg, Chandigarh 160019, India",
+  "source": "photon"
+ },
+ "Northern Regional Office, Plot No. 4-A, Madhya Marg, Sector 27-B, Chandigarh 160019 | city=Chandigarh": {
+  "lat": 30.725647,
+  "lon": 76.8080462,
+  "precision": "college",
+  "query": "Madhya Marg, Sector 27-B, Chandigarh 160019, India",
+  "source": "photon"
+ },
+ "UCF Sadan, Ground Floor, Block D, Deep Nagar Road, Vishnu Vihar, Dehradun, Uttarakhand 248001 | city=Dehradun": {
+  "lat": 30.3255646,
+  "lon": 78.0436813,
+  "precision": "city",
+  "query": "Dehradun, India",
+  "source": "photon"
+ },
+ "Plot No. 4-A, Sector 27-B, Madhya Marg, Chandigarh 160019 (listed address per BIS directory) | city=Chandigarh": {
+  "lat": 30.7334421,
+  "lon": 76.7797143,
+  "precision": "city",
+  "query": "Chandigarh, India",
+  "source": "photon"
+ },
+ "Lane No. 4, SIDCO Industrial Complex, Bari Brahmana, Jammu 181133 (J&K) | city=Jammu": {
+  "lat": 32.6490544,
+  "lon": 74.8988541,
+  "precision": "proposed",
+  "query": "SIDCO Industrial Complex, Bari Brahmana, Jammu 181133 (J&K), India",
+  "source": "photon"
+ },
+ "6th Floor, Gruha Nirman Bhawan (OSHB Building), Sachivalaya Marg, Bhubaneswar 751001 | city=Bhubaneswar": {
+  "lat": 20.2838158,
+  "lon": 85.8330021,
+  "precision": "restaurant",
+  "query": "Sachivalaya Marg, Bhubaneswar 751001, India",
+  "source": "photon"
+ },
+ "2nd Floor, West End Block, HOUSEFED Building Complex, Last Gate, Dispur, Guwahati 781006 | city=Guwahati": {
+  "lat": 26.1805978,
+  "lon": 91.753943,
+  "precision": "city",
+  "query": "Guwahati, India",
+  "source": "photon"
+ },
+ "55 and 57, M Road, Bistupur, Jamshedpur 831001 (Jharkhand) | city=Jamshedpur": {
+  "lat": 22.7929229,
+  "lon": 86.1863343,
+  "precision": "supermarket",
+  "query": "M Road, Bistupur, Jamshedpur 831001 (Jharkhand), India",
+  "source": "photon"
+ },
+ "NSIC Building, 7th Floor, CP Block, Plot No. 7/7 & 7/8, Salt Lake, Sector V, Kolkata 700091 (West Bengal) | city=Kolkata": {
+  "lat": 22.5798447,
+  "lon": 88.4376736,
+  "precision": "commercial",
+  "query": "CP Block, Plot No. 7/7 & 7/8, Salt Lake, Sector V, Kolkata 700091 (West Bengal), India",
+  "source": "photon"
+ },
+ "Patna, Bihar | city=Patna": {
+  "lat": 25.6093239,
+  "lon": 85.1235252,
+  "precision": "city",
+  "query": "Patna, Bihar, India",
+  "source": "photon"
+ },
+ "Raipur, Chhattisgarh | city=Raipur": {
+  "lat": 21.2380912,
+  "lon": 81.6336993,
+  "precision": "city",
+  "query": "Raipur, Chhattisgarh, India",
+  "source": "photon"
+ },
+ "C.I.T. Campus, IV Cross Road, Taramani, Chennai 600113 | city=Chennai": {
+  "lat": 12.9786584,
+  "lon": 80.2416441,
+  "precision": "station",
+  "query": "IV Cross Road, Taramani, Chennai 600113, India",
+  "source": "photon"
+ },
+ "BSNL DTAX Building, Third Floor, Race Course, Coimbatore 641018 | city=Coimbatore": {
+  "lat": 11.001692,
+  "lon": 76.9713177,
+  "precision": "police",
+  "query": "Third Floor, Race Course, Coimbatore 641018, India",
+  "source": "photon"
+ },
+ "Plot No. 1, Survey No. 367/1, ZTS-NFC Main Road, Industrial Development Park, Moula-Ali, Hyderabad 500040 | city=Hyderabad": {
+  "lat": 17.360589,
+  "lon": 78.4740613,
+  "precision": "city",
+  "query": "Hyderabad, India",
+  "source": "photon"
+ },
+ "1st Floor, KSFC Building, Hubli-Dharwad Highway, Rayapur, Dharwad, Karnataka 580009 | city=Dharwad": {
+  "lat": 15.4083854,
+  "lon": 75.0662353,
+  "precision": "school",
+  "query": "Hubli-Dharwad Highway, Rayapur, Dharwad, Karnataka 580009, India",
+  "source": "photon"
+ },
+ "CWC Regional Office Complex, II Floor, Maveli Road, Gandhi Nagar, Kadavanthra (P.O.), Kochi 682020 (Kerala) | city=Kochi": {
+  "lat": 9.9760917,
+  "lon": 76.2928835,
+  "precision": "post_office",
+  "query": "Maveli Road, Gandhi Nagar, Kadavanthra (P.O.), Kochi 682020 (Kerala), India",
+  "source": "photon"
+ },
+ "# 56-2-11, 1st Floor, APMARKFED Building, APIIC Colony, Jawahar Autonagar, Vijayawada 520007 (Andhra Pradesh) | city=Vijayawada": {
+  "lat": 16.5115306,
+  "lon": 80.6160469,
+  "precision": "city",
+  "query": "Vijayawada, India",
+  "source": "photon"
+ },
+ "3rd Floor, Navajivan Amrut Jayanti Bhavan, Behind Gujarat Vidyapith, Off. Ashram Road, Ahmedabad 380014 (Gujarat) | city=Ahmedabad": {
+  "lat": 23.0215374,
+  "lon": 72.5800568,
+  "precision": "city",
+  "query": "Ahmedabad, India",
+  "source": "photon"
+ },
+ "First Floor, Doorsanchar Bhavan, Karimabad, Admin Building, Ghod Dod Road, Surat 395001 | city=Surat": {
+  "lat": 21.2094892,
+  "lon": 72.8317058,
+  "precision": "city",
+  "query": "Surat, India",
+  "source": "photon"
+ },
+ "05th Floor, MTNL CETTM Building, Technology Street, Hiranandani Gardens, Powai, Mumbai 400076 | city=Mumbai": {
+  "lat": 19.1177265,
+  "lon": 72.9148119,
+  "precision": "hostel",
+  "query": "MTNL CETTM Building, Technology Street, Hiranandani Gardens, Powai, Mumbai 400076, India",
+  "source": "photon"
+ },
+ "Indian Bureau of Mines, Block 'A' & 'D', 8th Floor, Indira Bhavan, Civil Lines, Nagpur 440001 (Maharashtra) | city=Nagpur": {
+  "lat": 21.1516946,
+  "lon": 79.0796331,
+  "precision": "government",
+  "query": "8th Floor, Indira Bhavan, Civil Lines, Nagpur 440001 (Maharashtra), India",
+  "source": "photon"
+ },
+ "657-660, MAIDC Building, Market Yard, Gultekadi, Pune 411037 | city=Pune": {
+  "lat": 18.510523,
+  "lon": 73.7662268,
+  "precision": "marketplace",
+  "query": "Market Yard, Gultekadi, Pune 411037, India",
+  "source": "photon"
+ },
+ "F.P. No. 364/P, Ward No. 13, Opposite Crystal Mall, Next to Bharat Petrol Pump, Kalawad Road, Rajkot 360005 | city=Rajkot": {
+  "lat": 22.3053263,
+  "lon": 70.8028377,
+  "precision": "city",
+  "query": "Rajkot, India",
+  "source": "photon"
+ },
+ "F.P. No. 364/P, Ward No. 13, Opposite Crystal Mall, Kalawad Road, Rajkot 360005 (listed address per BIS directory) | city=Rajkot": {
+  "lat": 22.3053263,
+  "lon": 70.8028377,
+  "precision": "city",
+  "query": "Rajkot, India",
+  "source": "photon"
+ }
+}

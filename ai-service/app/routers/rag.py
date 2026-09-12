@@ -71,8 +71,14 @@ def rag_answer(body: RagQuery) -> dict:
     # the gate above guarantees the top chunk is relevant.
     synth_blocks = [r for r in results if r["similarity"] >= retrieval.SYNTH_FLOOR] or results[:2]
 
-    answer = llm.synthesize_answer(body.query, synth_blocks)
-    return {"answer": answer, "citations": _citations(synth_blocks), "grounded": True}
+    answer, synthesis, fell_back = llm.synthesize_answer(body.query, synth_blocks)
+    return {
+        "answer": answer,
+        "citations": _citations(synth_blocks),
+        "grounded": True,
+        "synthesis": synthesis,
+        "fellBack": fell_back,
+    }
 
 
 @router.post("/applicability")

@@ -50,29 +50,30 @@ export default function Dashboard() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h1 className="text-2xl font-bold">
+        <h1 className="font-serif text-2xl font-bold text-ink">
           {isBusiness ? "Business dashboard" : "Consumer dashboard"}
         </h1>
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-ink-faint">
           {user?.businessName ? `${user.businessName} · ` : ""}
           {user?.email}
         </p>
       </div>
+      <div className="mt-2 border-t-2 border-navy" />
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         {isBusiness && (
           <>
-            <section className="rounded-xl border border-ink-100 bg-white p-5 shadow-sm">
+            <section className="border border-paper-edge bg-white/60 p-5">
               <div className="flex items-center justify-between">
-                <h2 className="font-semibold">Watched categories</h2>
-                <Link to="/radar" className="text-xs font-semibold text-ink-700 hover:underline">
+                <h2 className="smallcaps text-sm font-semibold text-ink-soft">Watched categories</h2>
+                <Link to="/radar" className="text-xs font-semibold text-navy underline underline-offset-2">
                   Add from radar →
                 </Link>
               </div>
               {watches.length === 0 ? (
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-ink-soft">
                   You're not watching any category yet. Add one from the{" "}
-                  <Link to="/radar" className="font-medium underline">
+                  <Link to="/radar" className="font-medium text-navy underline">
                     radar
                   </Link>{" "}
                   or the applicability wizard.
@@ -80,9 +81,15 @@ export default function Dashboard() {
               ) : (
                 <ul className="mt-3 space-y-2">
                   {watches.map((w) => (
-                    <li key={w.id} className="flex items-center justify-between rounded-lg bg-ink-50 px-3 py-2 text-sm">
-                      <span>{w.product_category}</span>
-                      <button onClick={() => void removeWatch(w.id)} className="text-xs font-medium text-red-600 hover:underline">
+                    <li
+                      key={w.id}
+                      className="flex items-center justify-between border border-paper-edge bg-paper-deep/60 px-3 py-2 text-sm"
+                    >
+                      <span className="text-ink">{w.product_category}</span>
+                      <button
+                        onClick={() => void removeWatch(w.id)}
+                        className="text-xs font-medium text-signal underline underline-offset-2"
+                      >
                         Remove
                       </button>
                     </li>
@@ -91,10 +98,10 @@ export default function Dashboard() {
               )}
             </section>
 
-            <section className="rounded-xl border border-ink-100 bg-white p-5 shadow-sm">
-              <h2 className="font-semibold">Radar hits on your watches</h2>
+            <section className="border border-paper-edge bg-white/60 p-5">
+              <h2 className="smallcaps text-sm font-semibold text-ink-soft">Radar hits on your watches</h2>
               {radarHits.length === 0 ? (
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-ink-soft">
                   {watches.length === 0 ? "Watch a category to see QCOs land here." : "Nothing touching your watches right now."}
                 </p>
               ) : (
@@ -104,12 +111,12 @@ export default function Dashboard() {
                   ))}
                 </ul>
               )}
-              <h2 className="mt-5 font-semibold">Next deadlines (all categories)</h2>
+              <h2 className="smallcaps mt-5 text-sm font-semibold text-ink-soft">Next deadlines (all categories)</h2>
               <ul className="mt-3 space-y-2 text-sm">
                 {upcoming.map((q) => (
                   <QcoLine key={q.id} item={q} />
                 ))}
-                {upcoming.length === 0 && <li className="text-slate-500">No upcoming effective dates on file.</li>}
+                {upcoming.length === 0 && <li className="text-ink-soft">No upcoming effective dates on file.</li>}
               </ul>
             </section>
           </>
@@ -117,27 +124,27 @@ export default function Dashboard() {
 
         {!isBusiness && (
           <>
-            <section className="rounded-xl border border-ink-100 bg-white p-5 shadow-sm">
-              <h2 className="font-semibold">Check a product's mark</h2>
-              <p className="mt-2 text-sm text-slate-600">
+            <section className="border border-paper-edge bg-white/60 p-5">
+              <h2 className="smallcaps text-sm font-semibold text-ink-soft">Check a product's mark</h2>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                 Bought something with an ISI mark, HUID or CRS number on it? Verify it in seconds.
               </p>
               <Link
                 to="/verify"
-                className="mt-3 inline-block rounded-lg bg-ink-800 px-4 py-2 text-sm font-semibold text-white hover:bg-ink-900"
+                className="mt-3 inline-block border border-navy bg-navy px-4 py-2 text-sm font-medium text-white hover:bg-navy-deep"
               >
                 Verify a mark
               </Link>
             </section>
-            <section className="rounded-xl border border-ink-100 bg-white p-5 shadow-sm">
-              <h2 className="font-semibold">Something defective?</h2>
-              <p className="mt-2 text-sm text-slate-600">
+            <section className="border border-paper-edge bg-white/60 p-5">
+              <h2 className="smallcaps text-sm font-semibold text-ink-soft">Something defective?</h2>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                 The complaint copilot turns a free-text description into a properly structured complaint for
-                BIS's official channel.
+                BIS's official channels.
               </p>
               <Link
                 to="/complaints"
-                className="mt-3 inline-block rounded-lg bg-saffron-500 px-4 py-2 text-sm font-semibold text-ink-900 hover:bg-saffron-400"
+                className="mt-3 inline-block border border-brass-deep bg-brass px-4 py-2 text-sm font-medium text-white hover:bg-brass-deep"
               >
                 Draft a complaint
               </Link>
@@ -145,17 +152,17 @@ export default function Dashboard() {
           </>
         )}
 
-        <section className="rounded-xl border border-ink-100 bg-white p-5 shadow-sm">
+        <section className="border border-paper-edge bg-white/60 p-5">
           <div className="flex items-center justify-between">
-            <h2 className="font-semibold">Recent chats</h2>
-            <Link to="/chat" className="text-xs font-semibold text-ink-700 hover:underline">
+            <h2 className="smallcaps text-sm font-semibold text-ink-soft">Recent chats</h2>
+            <Link to="/chat" className="text-xs font-semibold text-navy underline underline-offset-2">
               Open chat →
             </Link>
           </div>
           {sessions.length === 0 ? (
-            <p className="mt-2 text-sm text-slate-500">
+            <p className="mt-2 text-sm text-ink-soft">
               No conversations yet —{" "}
-              <Link to="/chat" className="underline">
+              <Link to="/chat" className="text-navy underline">
                 ask Sahayak
               </Link>{" "}
               something.
@@ -163,27 +170,35 @@ export default function Dashboard() {
           ) : (
             <ul className="mt-3 space-y-2 text-sm">
               {sessions.slice(0, 5).map((s) => (
-                <li key={s.id} className="flex items-center justify-between rounded-lg bg-ink-50 px-3 py-2">
-                  <span className="truncate">{s.title || "Untitled chat"}</span>
-                  <span className="whitespace-nowrap text-xs text-slate-400">{formatDate(s.created_at)}</span>
+                <li
+                  key={s.id}
+                  className="flex items-center justify-between border border-paper-edge bg-paper-deep/60 px-3 py-2"
+                >
+                  <span className="truncate text-ink">{s.title || "Untitled chat"}</span>
+                  <span className="whitespace-nowrap text-xs text-ink-faint">{formatDate(s.created_at)}</span>
                 </li>
               ))}
             </ul>
           )}
         </section>
 
-        <section className="rounded-xl border border-ink-100 bg-white p-5 shadow-sm">
-          <h2 className="font-semibold">My complaints</h2>
+        <section className="border border-paper-edge bg-white/60 p-5">
+          <h2 className="smallcaps text-sm font-semibold text-ink-soft">My complaints</h2>
           {complaints.length === 0 ? (
-            <p className="mt-2 text-sm text-slate-500">No complaints drafted.</p>
+            <p className="mt-2 text-sm text-ink-soft">No complaints drafted.</p>
           ) : (
             <ul className="mt-3 space-y-2 text-sm">
               {complaints.map((c) => (
-                <li key={c.id} className="flex items-center justify-between gap-2 rounded-lg bg-ink-50 px-3 py-2">
-                  <span className="truncate">{c.product_description}</span>
+                <li
+                  key={c.id}
+                  className="flex items-center justify-between gap-2 border border-paper-edge bg-paper-deep/60 px-3 py-2"
+                >
+                  <span className="truncate text-ink">{c.product_description}</span>
                   <span
-                    className={`whitespace-nowrap rounded px-1.5 py-0.5 text-xs font-semibold ${
-                      c.status === "submitted" ? "bg-emerald-100 text-emerald-800" : "bg-slate-200 text-slate-600"
+                    className={`smallcaps whitespace-nowrap border px-1.5 py-0.5 text-xs font-semibold ${
+                      c.status === "submitted"
+                        ? "border-moss bg-moss-wash text-moss"
+                        : "border-paper-edge bg-white text-ink-soft"
                     }`}
                   >
                     {c.status}
@@ -201,14 +216,12 @@ export default function Dashboard() {
 function QcoLine({ item }: { item: QcoItem }) {
   const days = daysUntil(item.effective_date);
   return (
-    <li className="flex items-start justify-between gap-3 rounded-lg bg-ink-50 px-3 py-2">
+    <li className="flex items-start justify-between gap-3 border border-paper-edge bg-paper-deep/60 px-3 py-2">
       <div className="min-w-0">
-        <p className="truncate font-medium">{item.title}</p>
-        <p className="text-xs text-slate-500">
-          {item.product_categories.slice(0, 3).join(", ")}
-        </p>
+        <p className="truncate font-medium text-ink">{item.title}</p>
+        <p className="text-xs text-ink-faint">{item.product_categories.slice(0, 3).join(", ")}</p>
       </div>
-      <span className="whitespace-nowrap text-xs font-semibold text-ink-700">
+      <span className="whitespace-nowrap text-xs font-semibold text-navy">
         {days !== null && days >= 0 ? `in ${days} days` : formatDate(item.effective_date)}
       </span>
     </li>

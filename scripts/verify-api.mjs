@@ -137,6 +137,15 @@ async function main() {
   const submit = await j(`${API}/complaints/${complaint.body.complaint.id}/submit`, { method: "PATCH", headers: auth });
   check("complaint submitted", submit.status === 200 && submit.body?.status === "submitted");
 
+  console.log("\n[9] Offices directory (v2)");
+  const offices = await j(`${API}/offices`);
+  check("offices endpoint returns the directory", offices.status === 200 && offices.body?.items?.length >= 40, `got ${offices.body?.items?.length}`);
+  const hq = offices.body.items.find((o) => o.office_type === "hq");
+  check("HQ row present with helpline", !!hq && hq.phone?.includes("23230131"));
+  const geocoded = offices.body.items.filter((o) => o.latitude !== null && o.longitude !== null).length;
+  check("rows are geocoded", geocoded >= 40, `${geocoded}/${offices.body.items.length}`);
+  check("chat answer flags its synthesis source", typeof answer.body?.synthesis === "string");
+
   console.log(`\n== Result: ${passed} passed, ${failed} failed ==`);
   process.exit(failed > 0 ? 1 : 0);
 }
