@@ -87,6 +87,7 @@ async function main() {
   });
   check("chat answer returns 201", answer.status === 201, JSON.stringify(answer.body).slice(0, 200));
   check("answer carries citations", (answer.body?.citations ?? []).length > 0);
+  check("answer carries its grounding score", typeof answer.body?.groundingScore === "number", `got ${JSON.stringify(answer.body?.groundingScore)}`);
 
   const refusal = await j(`${API}/chat/sessions/${session.body.id}/messages`, {
     method: "POST",
@@ -94,6 +95,7 @@ async function main() {
     body: JSON.stringify({ content: "unicorn saddle certification requirements on planet Mars" }),
   });
   check("off-corpus query refuses honestly", refusal.body?.grounded === false && refusal.body?.citations?.length === 0, JSON.stringify(refusal.body).slice(0, 150));
+  check("refusal still reports its best score", typeof refusal.body?.groundingScore === "number");
 
   console.log("\n[5] QCO feed");
   const feed = await j(`${API}/qco/feed?pageSize=50`);
@@ -145,6 +147,14 @@ async function main() {
   const geocoded = offices.body.items.filter((o) => o.latitude !== null && o.longitude !== null).length;
   check("rows are geocoded", geocoded >= 40, `${geocoded}/${offices.body.items.length}`);
   check("chat answer flags its synthesis source", typeof answer.body?.synthesis === "string");
+
+  console.log("\n[10] Corpus stats (grounding transparency, v3)");
+  const stats = await j(`${API}/stats`);
+  check(
+    "stats endpoint returns corpus counts",
+    stats.status === 200 && stats.body?.standards > 0 && stats.body?.qcos >= 10 && stats.body?.offices >= 40,
+    JSON.stringify(stats.body),
+  );
 
   console.log(`\n== Result: ${passed} passed, ${failed} failed ==`);
   process.exit(failed > 0 ? 1 : 0);

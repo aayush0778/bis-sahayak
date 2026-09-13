@@ -26,14 +26,16 @@ async function mountMap(el: HTMLDivElement, offices: Office[]) {
   });
 
   const withCoords = offices.filter((o) => o.latitude !== null && o.longitude !== null);
+  const markers = new Map<string, import("leaflet").Marker>();
   for (const o of withCoords) {
-    L.marker([o.latitude as number, o.longitude as number], { icon })
+    const marker = L.marker([o.latitude as number, o.longitude as number], { icon })
       .addTo(map)
       .bindPopup(
         `<strong>${o.name}</strong><br/>${o.address}<br/>${o.phone ? `☎ ${o.phone}` : ""}`,
       );
+    markers.set(o.name, marker);
   }
-  return map;
+  return { map, markers };
 }
 
 export default function Offices() {
@@ -45,10 +47,10 @@ export default function Offices() {
   const [userLoc, setUserLoc] = useState<{ lat: number; lng: number } | null>(null);
   const [locState, setLocState] = useState<"idle" | "locating" | "denied" | "ok">("idle");
   const mapDivRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<{ setView: (c: [number, number], z: number) => void; openPopup: (m: unknown) => void } | null>(
-    null,
-  );
-  const listTopRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<import("leaflet").Map | null>(null);
+  const markersRef = useRef<Map<string, import("leaflet").Marker>>(new Map());
+  // clicked before the tiles finished mounting — replay once the map exists
+  const pendingFocusRef = useRef<string | null>(null);
 
   useEffect(() => {
     getOffices()
@@ -62,21 +64,25 @@ export default function Offices() {
   useEffect(() => {
     if (!offices.length || !mapDivRef.current || mapRef.current) return;
     let cancelled = false;
-    let map: import("leaflet").Map | null = null;
-    mountMap(mapDivRef.current, offices).then((m) => {
+    mountMap(mapDivRef.current, offices).then(({ map, markers }) => {
       if (cancelled) {
-        m.remove();
+        map.remove();
         return;
       }
-      map = m;
-      mapRef.current = m as never;
+      mapRef.current = map;
+      markersRef.current = markers;
       // container may have been laid out after init — recompute size
-      setTimeout(() => m.invalidateSize(), 150);
+      setTimeout(() => map.invalidateSize(), 150);
+      if (pendingFocusRef.current) {
+        focusMarker(pendingFocusRef.current);
+        pendingFocusRef.current = null;
+      }
     });
     return () => {
       cancelled = true;
-      map?.remove();
+      mapRef.current?.remove();
       mapRef.current = null;
+      markersRef.current = new Map();
     };
   }, [offices]);
 
@@ -119,20 +125,22 @@ export default function Offices() {
     );
   }
 
+  function focusMarker(name: string) {
+    const marker = markersRef.current.get(name);
+    if (!marker || !mapRef.current) return;
+    mapDivRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    mapRef.current.setView(marker.getLatLng(), 12, { animate: true });
+    marker.openPopup();
+  }
+
   function focusOffice(o: Office) {
-    if (o.latitude !== null && o.longitude !== null && mapRef.current) {
-      const map = mapRef.current as never as {
-        setView: (c: [number, number], z: number) => void;
-        eachLayer: (cb: (l: { getLatLng?: () => { lat: number; lng: number }; openPopup: () => void }) => void) => void;
-      };
-      map.setView([o.latitude, o.longitude], 12);
-      map.eachLayer((layer) => {
-        if (layer.getLatLng && Math.abs(layer.getLatLng().lat - o.latitude!) < 0.0001) {
-          layer.openPopup();
-        }
-      });
-      listTopRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (o.latitude === null || o.longitude === null) return;
+    if (!mapRef.current) {
+      pendingFocusRef.current = o.name;
+      mapDivRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
     }
+    focusMarker(o.name);
   }
 
   return (
@@ -191,7 +199,6 @@ export default function Offices() {
 
       <div className="mt-4 h-96 border border-paper-edge" ref={mapDivRef} data-testid="office-map" />
 
-      <div ref={listTopRef} />
       <ol className="mt-6 divide-y divide-paper-edge border-y border-paper-edge">
         {visible.map((o) => (
           <li key={o.name} className="py-3">

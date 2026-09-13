@@ -1,6 +1,114 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../lib/auth";
 import { HexSeal } from "../components/Seal";
+import Slideshow, { type Slide } from "../components/Slideshow";
+
+/** Every slide states something verifiable about the product — no invented claims. */
+const SLIDES: Slide[] = [
+  {
+    kicker: "Step 1 · Applicability",
+    title: "Which standards apply to your product?",
+    body: "Describe it in plain language — get the applicable IS numbers, the certification scheme, and whether a Quality Control Order makes certification mandatory right now.",
+    href: "/applicability",
+    cta: "Check my product",
+  },
+  {
+    kicker: "Step 2 · Radar",
+    title: "Mandatory yet? The QCO radar knows.",
+    body: "Quality Control Orders on a gazette-style timeline with effective dates. Watch a category and see the moment a new order touches it — with calendar sync for the deadlines.",
+    href: "/radar",
+    cta: "Open the radar",
+  },
+  {
+    kicker: "Step 3 · Chat",
+    title: "Every answer cites its source",
+    body: "Answers are retrieval-grounded over a seeded corpus of BIS records, and the grounding score is printed on each reply. If it isn't on file, Sahayak refuses — it never improvises.",
+    href: "/chat",
+    cta: "Ask Sahayak",
+  },
+  {
+    kicker: "Before you buy",
+    title: "Verify the mark, not the seller's word",
+    body: "Look up a CM/L licence, jewellery HUID or CRS registration number, and read what the ISI mark, hallmark and CRS label actually mean. Sample records, stated openly.",
+    href: "/verify",
+    cta: "Verify a number",
+  },
+  {
+    kicker: "On the ground",
+    title: "47 BIS offices & labs, mapped",
+    body: "Headquarters, regional offices, 33 branch offices and laboratories transcribed from the official bis.gov.in directory — every row links its source, every pin opens on the map.",
+    href: "/offices",
+    cta: "Find an office",
+  },
+  {
+    kicker: "From BIS itself",
+    title: "Standards, explained by the Bureau",
+    body: "BIS Talks and Let's Talk Standards, embedded straight from BIS's official YouTube channel — we link and embed, never re-host.",
+    href: "#bis-videos",
+    cta: "Play a video",
+  },
+];
+
+/** IDs verified live against youtube.com — official Bureau of Indian Standards channel content. */
+const BIS_VIDEOS = [
+  { id: "bKn9n6Z8VFc", title: "BIS Talks on Quality Management System" },
+  { id: "G7BQozK2-Fs", title: "BIS Talks on Medical Devices and Equipment" },
+  { id: "BKaEWxQzRBQ", title: "Let's Talk Standards — Episode 1: Certification" },
+];
+
+const BIS_TALKS_PLAYLIST = "https://www.youtube.com/playlist?list=PLJv3DypDPPx9oI-bV5Pqg2s0EIj8uqmLC";
+const BIS_CHANNEL = "https://www.youtube.com/c/BureauofIndianStandards";
+
+/** Facade pattern: the YouTube iframe only loads after the visitor asks for it. */
+function VideoFacade({ id, title }: { id: string; title: string }) {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <article className="border border-paper-edge bg-white/60">
+      <div className="relative aspect-video w-full bg-navy">
+        {playing ? (
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 h-full w-full"
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setPlaying(true)}
+            aria-label={`Play video: ${title}`}
+            className="group absolute inset-0 block"
+          >
+            <img
+              src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <span className="absolute inset-0 flex items-center justify-center">
+              <span className="flex h-12 w-12 items-center justify-center border-2 border-paper bg-navy/80 text-lg text-paper group-hover:border-brass group-hover:bg-brass/90">
+                ▶
+              </span>
+            </span>
+          </button>
+        )}
+      </div>
+      <div className="p-3">
+        <h3 className="font-serif text-sm font-semibold leading-snug text-ink">{title}</h3>
+        <a
+          href={`https://www.youtube.com/watch?v=${id}`}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-1 inline-block text-xs text-ink-faint underline underline-offset-2 hover:text-navy"
+        >
+          Watch on youtube.com ↗
+        </a>
+      </div>
+    </article>
+  );
+}
 
 const features = [
   {
@@ -93,6 +201,8 @@ export default function Landing() {
         </div>
       </section>
 
+      <Slideshow slides={SLIDES} />
+
       <section className="bg-paper-deep">
         <div className="mx-auto max-w-6xl px-4 py-12">
           <h2 className="font-serif text-2xl font-bold text-ink">What no BIS channel does today</h2>
@@ -118,6 +228,37 @@ export default function Landing() {
                   {f.cta} →
                 </Link>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="bis-videos" className="border-t border-paper-edge">
+        <div className="mx-auto max-w-6xl px-4 py-12">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <h2 className="font-serif text-2xl font-bold text-ink">Straight from BIS: standards, explained</h2>
+            <a
+              href={BIS_TALKS_PLAYLIST}
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm font-semibold text-navy underline underline-offset-4 hover:text-navy-deep"
+            >
+              Full BIS Talks playlist ↗
+            </a>
+          </div>
+          <div className="mt-3 max-w-3xl border-t border-paper-edge pt-3 text-slate-600">
+            <p>
+              Embedded from the Bureau of Indian Standards'{" "}
+              <a href={BIS_CHANNEL} target="_blank" rel="noreferrer" className="text-navy underline underline-offset-2">
+                official YouTube channel
+              </a>{" "}
+              — BIS Talks and Let's Talk Standards. Nothing is re-hosted; every video links back to its source on
+              youtube.com. Playback starts only when you press play.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {BIS_VIDEOS.map((v) => (
+              <VideoFacade key={v.id} id={v.id} title={v.title} />
             ))}
           </div>
         </div>

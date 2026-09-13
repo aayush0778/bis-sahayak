@@ -7,18 +7,17 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  async function onSubmit(e: FormEvent) {
-    e.preventDefault();
+  const from = (location.state as { from?: string } | null)?.from ?? "/dashboard";
+
+  async function signIn(email: string, password: string) {
     setError(null);
     setBusy(true);
     try {
       await login(email, password);
-      navigate((location.state as { from?: string } | null)?.from ?? "/dashboard");
+      navigate(from);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Sign-in failed");
     } finally {
@@ -26,9 +25,13 @@ export default function Login() {
     }
   }
 
-  function fillDemo(demoEmail: string) {
-    setEmail(demoEmail);
-    setPassword("Sahayak@123");
+  // Read the DOM values at submit, not React state — password-manager autofill
+  // writes straight into the inputs without firing onChange, so controlled
+  // state can silently stay empty and fail the sign-in.
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    await signIn(String(data.get("email") ?? "").trim(), String(data.get("password") ?? ""));
   }
 
   return (
@@ -45,11 +48,11 @@ export default function Login() {
           </label>
           <input
             id="email"
+            name="email"
             type="email"
             required
             autoComplete="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            defaultValue=""
             className="mt-1 w-full border border-paper-edge bg-paper px-3 py-2 text-ink focus:border-navy focus:outline-none"
           />
         </div>
@@ -59,11 +62,11 @@ export default function Login() {
           </label>
           <input
             id="password"
+            name="password"
             type="password"
             required
             autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            defaultValue=""
             className="mt-1 w-full border border-paper-edge bg-paper px-3 py-2 text-ink focus:border-navy focus:outline-none"
           />
         </div>
@@ -82,22 +85,27 @@ export default function Login() {
       </form>
 
       <div className="mt-4 border border-paper-edge bg-paper-deep p-4 text-sm">
-        <p className="smallcaps font-semibold text-navy">Quick demo access</p>
-        <div className="mt-2 flex gap-2">
+        <p className="smallcaps font-semibold text-navy">One-click demo access</p>
+        <p className="mt-1 text-xs text-ink-faint">Signs straight in — nothing to type, no autofill surprises.</p>
+        <div className="mt-2 flex flex-wrap gap-2">
           <button
-            onClick={() => fillDemo("business@demo.bis")}
-            className="border border-navy/40 bg-white px-3 py-1.5 text-xs font-medium text-navy hover:bg-navy-wash"
+            type="button"
+            disabled={busy}
+            onClick={() => void signIn("business@demo.bis", "Sahayak@123")}
+            className="border border-navy/40 bg-white px-3 py-1.5 text-xs font-medium text-navy hover:bg-navy-wash disabled:opacity-60"
           >
-            Fill business demo
+            Sign in as business demo
           </button>
           <button
-            onClick={() => fillDemo("consumer@demo.bis")}
-            className="border border-navy/40 bg-white px-3 py-1.5 text-xs font-medium text-navy hover:bg-navy-wash"
+            type="button"
+            disabled={busy}
+            onClick={() => void signIn("consumer@demo.bis", "Sahayak@123")}
+            className="border border-navy/40 bg-white px-3 py-1.5 text-xs font-medium text-navy hover:bg-navy-wash disabled:opacity-60"
           >
-            Fill consumer demo
+            Sign in as consumer demo
           </button>
         </div>
-        <p className="mt-2 text-xs text-ink-faint">Both demo accounts use the password Sahayak@123.</p>
+        <p className="mt-2 text-xs text-ink-faint">Both accounts use the password Sahayak@123.</p>
       </div>
 
       <p className="mt-6 text-center text-sm text-ink-soft">

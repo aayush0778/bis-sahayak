@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
-import { api, type ChatMessage, type ChatSession } from "../lib/api";
+import { api, type ChatMessage, type ChatSession, type CorpusStats } from "../lib/api";
 import CitationChip from "../components/CitationChip";
 
 const SUGGESTIONS = [
@@ -9,25 +9,35 @@ const SUGGESTIONS = [
   "What is the Transition Facilitation QCO?",
 ];
 
-function SynthesisNote({ message }: { message: ChatMessage }) {
+/** Deliberately off-corpus — verified to fail the grounding gate, so this chip demos the honest refusal. */
+const HONESTY_TEST = "What is the BIS standard for unicorn saddles?";
+
+const GROUNDING_GATE = 0.3;
+
+function fmtScore(s?: number | null): string {
+  return typeof s === "number" ? s.toFixed(2) : "n/a";
+}
+
+function GroundingNote({ message }: { message: ChatMessage }) {
   if (message.grounded === false) {
     return (
-      <p className="mt-1 text-xs text-ink-faint">
-        Refused honestly — the corpus has nothing on this, and Sahayak does not improvise.
+      <p className="mt-1 text-xs text-signal">
+        Honest refusal — best corpus match scored {fmtScore(message.groundingScore)}, below the{" "}
+        {GROUNDING_GATE.toFixed(2)} grounding gate, so nothing on file could be cited. Sahayak does not improvise.
       </p>
     );
   }
-  if (message.fellBack) {
-    return (
-      <p className="mt-1 text-xs text-moss">
-        Language model unavailable — answered directly from the verified sources cited above.
-      </p>
-    );
-  }
-  if (message.synthesis === "corpus") {
-    return <p className="mt-1 text-xs text-ink-faint">Composed directly from the cited records (extractive mode).</p>;
-  }
-  return <p className="mt-1 text-xs text-ink-faint">Synthesised by the language model strictly from the cited records.</p>;
+  const source = message.fellBack
+    ? "language model unavailable — answer composed directly from the cited sources"
+    : message.synthesis === "corpus"
+      ? "answer composed directly from the cited sources (extractive)"
+      : "language model, writing strictly from the cited sources";
+  return (
+    <p className="mt-1 text-xs text-ink-faint">
+      Built from {message.citations?.length ?? 0} cited source{(message.citations?.length ?? 0) === 1 ? "" : "s"} ·
+      best corpus match {fmtScore(message.groundingScore)} (gate ≥ {GROUNDING_GATE.toFixed(2)}) · {source}.
+    </p>
+  );
 }
 
 export default function Chat() {
@@ -39,11 +49,15 @@ export default function Chat() {
   const [error, setError] = useState<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const [liveMsg, setLiveMsg] = useState("");
+  const [stats, setStats] = useState<CorpusStats | null>(null);
 
   useEffect(() => {
     api<{ items: ChatSession[] }>("/chat/sessions")
       .then((res) => setSessions(res.items))
       .catch((e) => setError(e.message));
+    api<CorpusStats>("/stats")
+      .then(setStats)
+      .catch(() => setStats(null)); // corpus strip is decorative — never block chat on it
   }, []);
 
   useEffect(() => {
@@ -143,6 +157,37 @@ export default function Chat() {
                 Answers are grounded in BIS Sahayak's seeded corpus and cite the IS number or QCO name. When
                 something isn't on file, Sahayak says so plainly.
               </p>
+              <div className="mt-4 border border-paper-edge bg-paper-deep/60 p-4 text-left">
+                <p className="smallcaps text-xs font-semibold text-navy">How every answer is built</p>
+                <ol className="mt-2 list-decimal space-y-1.5 pl-4 text-xs leading-relaxed text-ink-soft">
+                  <li>
+                    <strong className="text-ink">Retrieve</strong> — vector search over{" "}
+                    {stats
+                      ? `${stats.standards.toLocaleString("en-IN")} standards, ${stats.qcos} QCO notifications and ${stats.offices} offices/labs`
+                      : "the seeded BIS corpus"}{" "}
+                    scraped from official sources.
+                  </li>
+                  <li>
+                    <strong className="text-ink">Score</strong> — each chunk gets a cosine-similarity score against
+                    your question; the best score is printed under every answer.
+                  </li>
+                  <li>
+                    <strong className="text-ink">Gate</strong> — if the best match scores below{" "}
+                    {GROUNDING_GATE.toFixed(2)} (or shares under 25% of its content words), the question is refused
+                    instead of answered.
+                  </li>
+                  <li>
+                    <strong className="text-ink">Synthesise</strong> — the language model may only write from the
+                    retrieved, cited chunks. If the model is down, the answer is composed directly from the sources
+                    (extractive mode) — the note under each reply tells you which happened.
+                  </li>
+                </ol>
+                <p className="mt-2 border-t border-paper-edge pt-2 text-xs text-ink-faint">
+                  The corpus is fixed and versioned — the model cannot browse the internet, so it can never invent a
+                  standard, a date or a source. Try the honesty test below to watch the gate refuse a question that
+                  isn't on file.
+                </p>
+              </div>
               <div className="mt-6 flex flex-wrap justify-center gap-2">
                 {SUGGESTIONS.map((s) => (
                   <button
@@ -153,6 +198,13 @@ export default function Chat() {
                     {s}
                   </button>
                 ))}
+                <button
+                  onClick={() => void send(HONESTY_TEST)}
+                  title="Deliberately off-corpus — watch the grounding gate refuse it"
+                  className="border border-signal/60 bg-signal-wash px-3 py-1.5 text-xs text-signal hover:border-signal"
+                >
+                  Honesty test: {HONESTY_TEST}
+                </button>
               </div>
             </div>
           )}
@@ -185,7 +237,7 @@ export default function Chat() {
                     ))}
                   </div>
                 )}
-                <SynthesisNote message={m} />
+                <GroundingNote message={m} />
               </div>
             ),
           )}

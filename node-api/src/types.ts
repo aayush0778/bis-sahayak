@@ -24,6 +24,8 @@ export interface RagAnswerResponse {
   answer: string;
   citations: Citation[];
   grounded: boolean;
+  /** best cosine similarity from retrieval — shown in the UI as the grounding score */
+  topScore?: number;
 }
 
 export interface ApplicabilityResponse {

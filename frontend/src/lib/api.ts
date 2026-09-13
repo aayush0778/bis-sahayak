@@ -74,7 +74,15 @@ export interface ChatMessage {
   synthesis?: "llm" | "corpus";
   /** true when the LLM was tried but failed and the extractive composer took over */
   fellBack?: boolean;
+  /** best cosine similarity of the retrieval that fed this answer (gate is 0.30) */
+  groundingScore?: number | null;
   created_at?: string;
+}
+
+export interface CorpusStats {
+  standards: number;
+  qcos: number;
+  offices: number;
 }
 
 export interface ChatSession {

@@ -11,6 +11,7 @@ import { qcoRouter } from "./routes/qco";
 import { watchesRouter } from "./routes/watches";
 import { complaintsRouter } from "./routes/complaints";
 import { officesRouter } from "./routes/offices";
+import { statsRouter } from "./routes/stats";
 
 export interface AppDeps {
   db: DB;
@@ -47,6 +48,7 @@ export function createApp(deps: AppDeps): Express {
   app.use("/api/v1", watchesRouter(deps.db));
   app.use("/api/v1", complaintsRouter(deps.db, deps.ai));
   app.use("/api/v1", officesRouter(deps.db));
+  app.use("/api/v1", statsRouter(deps.db));
 
   app.use((_req, res) => {
     res.status(404).json({ error: { message: "Not found" } });

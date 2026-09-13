@@ -64,8 +64,11 @@ def rag_answer(body: RagQuery) -> dict:
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=503, detail=f"retrieval unavailable: {exc}") from exc
 
+    # Surfaced in the UI so the grounding gate is visible, not just enforced.
+    top_score = round(results[0]["similarity"], 3) if results else 0.0
+
     if not retrieval.grounded(results, body.query):
-        return {"answer": REFUSAL_TEXT, "citations": [], "grounded": False}
+        return {"answer": REFUSAL_TEXT, "citations": [], "grounded": False, "topScore": top_score}
 
     # Keep synthesis (and citations) to chunks that are actually on-topic;
     # the gate above guarantees the top chunk is relevant.
@@ -78,6 +81,7 @@ def rag_answer(body: RagQuery) -> dict:
         "grounded": True,
         "synthesis": synthesis,
         "fellBack": fell_back,
+        "topScore": top_score,
     }
 
 
