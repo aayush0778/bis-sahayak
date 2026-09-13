@@ -49,10 +49,10 @@ body {
   }
 }
 
-/* Leaflet map container needs an explicit height context */
+/* Leaflet chrome: paper-toned canvas. Height comes from the h-96 utility on
+   the container element — a height rule here would override it and collapse
+   the map, because this unlayered rule wins over Tailwind's utilities. */
 .leaflet-container {
-  height: 100%;
-  width: 100%;
   background: #f2eee3;
   font-family: inherit;
 }
